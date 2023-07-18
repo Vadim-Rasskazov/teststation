@@ -1,0 +1,36 @@
+Install Java 19 and Maven 4 (for Ubuntu 22.04)
+
+Run script:
+java.sh
+*(perhaps you have to do: sudo apt install openjfx)
+
+
+Install chromedriver
+
+Upgrade and check version if exist:
+sudo apt-get update && apt-get upgrade
+chromedriver
+
+If there are differences between chrome and chromedriver versions:
+https://chromedriver.storage.googleapis.com/index.html
+
+Run script:
+driver.sh
+
+
+
+Install app
+
+Put folder in home directory:
+bash teststation/java.sh
+bash teststation/install.sh
+
+Delete icon:
+bash teststation/delete.sh
+
+
+
+
+
+
+

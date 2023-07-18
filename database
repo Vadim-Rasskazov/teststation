@@ -1,0 +1,176 @@
+https://app.sqldbm.com/MySQL/Draft/#
+
+
+DROP TABLE IF EXISTS teststation.project;
+CREATE TABLE teststation.project (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    name VARCHAR(40) NOT NULL DEFAULT 'avtovokzaly' COMMENT 'Project name',
+    version VARCHAR(40) DEFAULT NULL COMMENT 'Project version',
+    PRIMARY KEY (id)
+) ENGINE=InnoDB COMMENT 'Projects table';
+
+INSERT INTO teststation.project (version)
+    VALUES ('user_mobile'), ('user_desktop'), ('carrier_lk'), ('admin_lk');
+
+
+DROP TABLE IF EXISTS teststation.release;
+CREATE TABLE teststation.release (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    version VARCHAR(40) DEFAULT NULL COMMENT 'Release version',
+    PRIMARY KEY (id)
+) ENGINE=InnoDB COMMENT 'Releases table';
+
+INSERT INTO teststation.release (version)
+    VALUES ('2.9.13');
+
+
+DROP TABLE IF EXISTS teststation.user;
+CREATE TABLE teststation.user (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    name VARCHAR(40) DEFAULT NULL COMMENT 'User name',
+    PRIMARY KEY (id)
+) ENGINE=InnoDB COMMENT 'Users table';
+
+INSERT INTO teststation.user (name)
+    VALUES ('vadim');
+
+
+DROP TABLE IF EXISTS teststation.test;
+CREATE TABLE teststation.test (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    name VARCHAR(80) DEFAULT NULL COMMENT 'Test name',
+    project_id int unsigned NOT NULL COMMENT 'Project ID',
+    description text DEFAULT NULL COMMENT 'Test description',
+    PRIMARY KEY (id),
+    CONSTRAINT fk_test_project FOREIGN KEY (project_id) REFERENCES teststation.project (id)
+) ENGINE=InnoDB COMMENT 'Tests table';
+
+INSERT INTO teststation.test (
+    name,
+    project_id,
+    description
+)   VALUES ('Booking mobile', 1, 'Mobile booking without authorization'),
+    ('Buying mobile', 1, 'Mobile buying with passenger removal and refund'),
+    ('Booking desktop', 2, 'Desktop booking without authorization'),
+    ('Buying desktop', 2, 'Desktop buying with passenger removal and refund'),
+    ('Create company', 3, 'Creation of a company by a carrier'),
+    ('Create route', 3, 'Creation of a route by a carrier'),
+    ('Sales activation', 4, 'Activation of sales by an administrator'),
+    ('Delete company', 4, 'Deleting a company by an administrator'),
+    ('Create all', 4, 'Complete creation, activation and deletion of a company and route by an administrator');
+
+
+DROP TABLE IF EXISTS teststation.error_level;
+CREATE TABLE teststation.error_level (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    project_id int unsigned NOT NULL COMMENT 'Project ID',
+    grade int unsigned NOT NULL DEFAULT 0 COMMENT 'Error grade',
+    PRIMARY KEY (id),
+    CONSTRAINT fk_error_project FOREIGN KEY (project_id) REFERENCES teststation.project (id)
+) ENGINE=InnoDB COMMENT 'Error level table';
+
+
+DROP TABLE IF EXISTS teststation.error;
+CREATE TABLE teststation.error (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    name VARCHAR(80) DEFAULT NULL COMMENT 'Error name',
+    level_id int unsigned NOT NULL COMMENT 'Error level ID',
+    description text DEFAULT NULL COMMENT 'Error description',
+    PRIMARY KEY (id),
+    CONSTRAINT fk_error_level FOREIGN KEY (level_id) REFERENCES teststation.error_level (id)
+) ENGINE=InnoDB COMMENT 'Errors table';
+
+
+DROP TABLE IF EXISTS teststation.test_result;
+CREATE TABLE teststation.test_result (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    test_id int unsigned NOT NULL COMMENT 'Test ID',
+    date date NOT NULL COMMENT 'Date of a test',
+    time timestamp NOT NULL COMMENT 'Duration of a test',
+    result ENUM ('successful', 'unsuccessful') NOT NULL DEFAULT 'unsuccessful' COMMENT 'Result of a test',
+    release_id int unsigned NOT NULL COMMENT 'Release ID',
+    error_id int unsigned NOT NULL COMMENT 'Error ID',
+    user_id int unsigned NOT NULL COMMENT 'User ID',
+    PRIMARY KEY (id),
+    CONSTRAINT fk_result_test FOREIGN KEY (test_id) REFERENCES teststation.test (id),
+    CONSTRAINT fk_result_release FOREIGN KEY (release_id) REFERENCES teststation.release (id),
+    CONSTRAINT fk_result_error FOREIGN KEY (error_id) REFERENCES teststation.error (id),
+    CONSTRAINT fk_result_user FOREIGN KEY (user_id) REFERENCES teststation.user (id)
+) ENGINE=InnoDB COMMENT 'Test results table';
+
+
+DROP TABLE IF EXISTS teststation.error_log;
+CREATE TABLE teststation.error_log (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    test_result_id int unsigned NOT NULL COMMENT 'Test result ID',
+    log text DEFAULT NULL COMMENT 'Complete log of an error',
+    PRIMARY KEY (id),
+    CONSTRAINT fk_log_result FOREIGN KEY (test_result_id) REFERENCES teststation.test_result (id)
+) ENGINE=InnoDB COMMENT 'Error logs table';
+
+
+DROP TABLE IF EXISTS teststation.test_stat;
+CREATE TABLE teststation.test_stat (
+    id int unsigned NOT NULL AUTO_INCREMENT,
+    period date NOT NULL COMMENT 'Date of tests',
+    total int unsigned DEFAULT NULL COMMENT 'Total number of tests',
+    error_count int unsigned DEFAULT NULL COMMENT 'Total number of errors',
+    most_often int unsigned DEFAULT NULL COMMENT 'Most often error',
+    PRIMARY KEY (id)
+) ENGINE=InnoDB COMMENT 'Test stat table';
+
+
+
+project		id		int unsigned	PK	Project version
+		name		VARCHAR(40)		-	
+		version		VARCHAR(40)		-	
+
+
+release		id		int unsigned	PK	Release version
+		version		VARCHAR(40)	-	
+
+
+user		id		int unsigned	PK	User data
+		name		VARCHAR(40)	-	
+
+
+test		id		int unsigned	PK	List of the tests
+		name		VARCHAR(80)	-	
+		project_id	int unsigned	FK	
+		description	text		-	
+
+
+error_level	id		int unsigned	PK	Errors data
+		project_id	int unsigned	FK	
+		grade		int unsigned	-	
+
+
+error		id		int unsigned	PK	Known errors
+		name		VARCHAR(80)	-	
+		level_id	int unsigned	-	
+		description	text		-	
+
+
+test_result	id		int unsigned	PK	Test results data
+		test_id		int unsigned	FK	
+		date		date
+		time		timestamp	-	
+		result		ENUM	-	
+		release_id	int unsigned	FK	
+		error_id	int unsigned	FK	
+		user_id		int unsigned	FK	
+
+
+error_log	id		int unsigned	PK	Errors that have occurred
+		test_result_id	int		FK	
+		log		text		-	
+
+
+test_stat	id		int unsigned	PK	Test statistics by day
+		period		date		-	
+		total		int unsigned	-	
+		error_count	int unsigned	-	
+		most_often	int unsigned	-
+		
+
+
