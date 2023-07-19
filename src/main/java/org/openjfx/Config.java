@@ -1,4 +1,5 @@
 package org.openjfx;
+//Configs example
 
 public class Config {
     String mail = "xxxxx@xxxxx";
@@ -11,7 +12,7 @@ public class Config {
     String carrierLogin = "xxxxx@xxxxx";
     String carrierPassword = "xxxxx";
     String adminLogin = "xxxxx@xxxxx";
-    String adminPassword = "";
+    String adminPassword = "xxxxx";
     String filePath = "/xxxxx";
     String userName = "xxxxx";
     String dbAddress = "jdbc:mysql://xxxxx";

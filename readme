@@ -1,8 +1,10 @@
+Put folder teststation in home directory.
+
+
 Install Java 19 and Maven 4 (for Ubuntu 22.04)
 
 Run script:
 java.sh
-*(perhaps you have to do: sudo apt install openjfx)
 
 
 Install chromedriver
@@ -18,11 +20,7 @@ Run script:
 driver.sh
 
 
-
-Install app
-
-Put folder in home directory:
-bash teststation/java.sh
+Install icon:
 bash teststation/install.sh
 
 Delete icon:

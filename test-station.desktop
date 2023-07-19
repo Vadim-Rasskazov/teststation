@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Test Station
+Exec=bash teststation/start.sh
+Icon=/home/ts/tsicon.png
+StartupWMClass=org.openjfx.Main
