@@ -16,7 +16,7 @@ import org.openqa.selenium.WebElement;
 
 public class Test {
     MonitorSize size = new MonitorSize();
-    Configs conf = new Configs();    
+    Configs conf = new Configs();
     ChromeDriver driver;
     WebDriverWait wait;
     Long documentNumber;
@@ -69,6 +69,7 @@ public class Test {
                 elementExist = true;
             } catch (Exception e) {
                 elementExist = false;
+                System.out.println("Warning: There are not places for passengers");
             }
             if (elementExist) {
                 driver.findElement(By.xpath("//fieldset//div/*[@class='select placeholder']/select/option[2]")).click(); //first place
@@ -77,13 +78,15 @@ public class Test {
                     driver.findElement(By.xpath("//*[@id='booking']/div/div/fieldset[3]/label/span")).click(); //without place
                 } catch (Exception e) { //если тарифа без места нет
                     driver.findElement(By.xpath("//fieldset[3]//div/*[@class='select placeholder']/select/option[4]")).click(); //third place
+                    System.out.println("Warning: Ticket without place can`t be chosen");
                 }
             } 
             if (!elementExist) { //there are no seats, but there is a tariff
                 try {
                     driver.findElement(By.xpath("//*[@id='booking']/div/div/fieldset[3]/label/span")).click(); //tariff without place
-                } catch (Exception ee) {
-                    ee.printStackTrace();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.out.println("Warning: Free ticket can`t be chosen");
                 }
             }
     }
@@ -92,17 +95,17 @@ public class Test {
         try {
             driver.findElement(By.xpath("//fieldset[3]/*[@class='row']/div[1]/div/select/option[2]")).click();
         } catch (Exception e) {
-            System.out.println("First passenger`s tariff can`t be chosen");
+            System.out.println("Warning: First passenger`s tariff can`t be chosen");
         }
         try {
             driver.findElement(By.xpath("//fieldset[2]/*[@class='row']/div[1]/div/select/option[1]")).click();
         } catch (Exception e) {
-            System.out.println("Second passenger`s tariff can`t be chosen");
+            System.out.println("Warning: Second passenger`s tariff can`t be chosen");
         }
         try {
             driver.findElement(By.xpath("//fieldset[1]/*[@class='row']/div[1]/div/select/option[2]")).click();
         } catch (Exception e) {
-            System.out.println("Third passenger`s tariff can`t be chosen");
+            System.out.println("Warning: Third passenger`s tariff can`t be chosen");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
     }
@@ -116,6 +119,7 @@ public class Test {
         } catch (Exception e) { //if there is no insurance
             driver.findElement(By.xpath("//*[@id='booking']/fieldset[3]/label/span[1]")).click();
             driver.findElement(By.xpath("//*[@id='booking']/fieldset[3]/button")).click();
+            System.out.println("Warning: Insurance can`t be chosen");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
     }
@@ -165,6 +169,7 @@ public class Test {
             elementExist = true;
         } catch (Exception e) {
             elementExist = false;
+            System.out.println("Warning: There are not places for passengers");
         }
         if (elementExist) {
             driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[1]/div[2]/div[4]/div[1]/div/div/div/div/div/div/select")).click();
@@ -178,13 +183,15 @@ public class Test {
             catch (Exception e) { //если тарифа без места нет
                 driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[4]/div[1]/div/div/div/div/div/div/select")).click();
                 driver.findElement(By.cssSelector(".seat-box.seat-widget__seat.seat-box_free.pointer")).click(); //third place
+                System.out.println("Warning: Ticket without place can`t be chosen");
             }
         } 
         if (!elementExist) { //there are no seats, but there is a tariff
             try {
                 driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[3]/div/div/div/label/span[1]/span")).click(); //tariff without place
-            } catch (Exception ee) {
-                ee.printStackTrace();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("Warning: Free ticket can`t be chosen");
             }
         }
     }
@@ -217,6 +224,7 @@ public class Test {
         } catch (Exception e) { //if there is no insurance
             driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[5]/div[2]/div/label/span[1]/span")).click();
             driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[5]/div[4]/button")).click();
+            System.out.println("Warning: Insurance can`t be chosen");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
     }
@@ -234,6 +242,7 @@ public class Test {
             driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
             driver.findElement(By.name("order_cc_cvv")).sendKeys("111");
             driver.findElement(By.id("ajax_submit")).click();
+            System.out.println("Info: Gateline payment system was chosen");
         } else { 
             try { //SPB Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[3]/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
@@ -242,12 +251,14 @@ public class Test {
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[4]/button")).click();
-                } catch (Exception ee) { //Tinkoff
+                System.out.println("Info: SPB Tinkoff payment system was chosen");
+                } catch (Exception ex) { //Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff);//test card number
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[2]/button")).click();
+                System.out.println("Info: Tinkoff payment system was chosen");
            }
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
