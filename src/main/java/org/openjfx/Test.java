@@ -226,11 +226,11 @@ public class Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1800));
         String url = driver.getCurrentUrl();
         if (url.contains("checkout.sandbox.gateline.net")) { //GateLine
-            driver.findElement(By.name("order_cc_number")).sendKeys("5276440065421319");
+            driver.findElement(By.name("order_cc_number")).sendKeys(conf.cardGateline); //test card number
             driver.findElement(By.cssSelector(".exp_month_sel > .selectBox-arrow")).click();
             driver.findElement(By.xpath("//a[contains(text(),'12')]")).click();
             driver.findElement(By.cssSelector(".exp_year_sel > .selectBox-arrow")).click();
-            driver.findElement(By.xpath("//a[contains(text(),'2022')]")).click();
+            driver.findElement(By.xpath("//a[contains(text(),'2024')]")).click();
             driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
             driver.findElement(By.name("order_cc_cvv")).sendKeys("111");
             driver.findElement(By.id("ajax_submit")).click();
@@ -238,15 +238,14 @@ public class Test {
             try { //SPB Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[3]/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys("4300000000000777");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1223");
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[4]/button")).click();
-
                 } catch (Exception ee) { //Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys("4300000000000777");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1223");
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[2]/button")).click();
            }

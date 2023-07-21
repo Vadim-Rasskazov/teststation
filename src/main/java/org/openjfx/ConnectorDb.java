@@ -9,7 +9,7 @@ public class ConnectorDb extends Configs {
 
     public void setCon () { //connection to database with dbName
         try {
-            con = DriverManager.getConnection(dbAddress,userName,password);
+            con = DriverManager.getConnection(dbAddress,dbUserName,dbPassword);
             statement = con.createStatement();
         } catch (Exception e) {
             e.printStackTrace();
