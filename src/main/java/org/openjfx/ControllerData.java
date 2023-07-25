@@ -1,7 +1,11 @@
 package org.openjfx;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -59,52 +63,55 @@ public class ControllerData {
     private TableColumn<?, ?> tableErrorsVersion;
 
     @FXML
-    private TableView<?> tableLogs;
+    private TableView<ErrorLogDb> tableLogs;
 
     @FXML
-    private TableColumn<?, ?> tableLogsLog;
+    private TableColumn<ErrorLogDb, String> tableLogsLog;
 
     @FXML
-    private TableColumn<?, ?> tableLogsNumber;
+    private TableColumn<ErrorLogDb, Integer> tableLogsNumber;
 
     @FXML
-    private TableView<?> tableTests;
+    private TableView<TestDb> tableTests;
 
     @FXML
-    private TableColumn<?, ?> tableTestsDescription;
+    private TableColumn<TestDb, String> tableTestsDescription;
 
     @FXML
-    private TableColumn<?, ?> tableTestsName;
+    private TableColumn<TestDb, String> tableTestsName;
 
     @FXML
-    private TableColumn<?, ?> tableTestsNumber;
+    private TableColumn<TestDb, Integer> tableTestsNumber;
 
     @FXML
-    private TableColumn<?, ?> tableTestsVersion;
+    private TableColumn<TestDb, String> tableTestsVersion;
 
     @FXML
-    private TableView<?> tableResults;
+    private TableView<ResultDb> tableResults;
 
     @FXML
-    private TableColumn<?, ?> tableResultsErrorNum;
+    private TableColumn<ResultDb, String> tableResultsDate;
 
     @FXML
-    private TableColumn<?, ?> tableResultsName;
+    private TableColumn<ResultDb, Integer> tableResultsErrorNum;
 
     @FXML
-    private TableColumn<?, ?> tableResultsNumber;
+    private TableColumn<ResultDb, String> tableResultsName;
 
     @FXML
-    private TableColumn<?, ?> tableResultsResult;
+    private TableColumn<ResultDb, Integer> tableResultsNumber;
 
     @FXML
-    private TableColumn<?, ?> tableResultsTime;
+    private TableColumn<ResultDb, String> tableResultsResult;
 
     @FXML
-    private TableColumn<?, ?> tableResultsUser;
+    private TableColumn<ResultDb, String> tableResultsTime;
 
     @FXML
-    private TableColumn<?, ?> tableResultsVersion;
+    private TableColumn<ResultDb, String> tableResultsUser;
+
+    @FXML
+    private TableColumn<ResultDb, String> tableResultsVersion;
 
     @FXML
     private TableView<?> tableStat;
@@ -124,10 +131,16 @@ public class ControllerData {
     @FXML
     private AnchorPane windowData;
 
+    private ObservableList<TestDb> testList = FXCollections.observableArrayList();
+
+    private ObservableList<ResultDb> resultList = FXCollections.observableArrayList();
+
+    private ObservableList<ErrorLogDb> logtList = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
 
+        StatementsDb statementsDb = new StatementsDb();
         ConnectorDb connectorDb = new ConnectorDb(); //new object dbConnector
         try {
             connectorDb.setCon();
@@ -137,11 +150,30 @@ public class ControllerData {
 
         MonitorSize size = new MonitorSize();
         windowData.setPrefSize((double) size.width / 5 * 4, size.height);
-        tableResultsName.setPrefWidth((double) size.width / 5 * 4 - 1020);
-        tableLogsLog.setPrefWidth((double) size.width / 5 * 4 - 180);
-        tableStatMostOften.setPrefWidth((double) size.width / 5 * 4 - 1260);
-        tableErrorsDescription.setPrefWidth((double) size.width / 5 * 4 - 780);
-        tableTestsDescription.setPrefWidth((double) size.width / 5 * 4 - 780);
+        tableResultsName.setPrefWidth((double) size.width / 5 * 4 - 1052);
+        tableLogsLog.setPrefWidth((double) size.width / 5 * 4 - 182);
+        tableStatMostOften.setPrefWidth((double) size.width / 5 * 4 - 1262);
+        tableErrorsDescription.setPrefWidth((double) size.width / 5 * 4 - 782);
+        tableTestsDescription.setPrefWidth((double) size.width / 5 * 4 - 782);
+
+        try {
+            ResultSet rs = connectorDb.statement.executeQuery(statementsDb.result);
+            while (rs.next()) {
+                resultList.add(new ResultDb(rs.getInt("id"), rs.getString("name"), rs.getString("result"),
+                        rs.getString("time"), rs.getString("date"), rs.getString("user"), rs.getString("version"), rs.getInt("number")));
+            }
+            tableResultsNumber.setCellValueFactory(cell -> cell.getValue().idProperty().asObject());
+            tableResultsName.setCellValueFactory(cell-> cell.getValue().nameProperty());
+            tableResultsResult.setCellValueFactory(cell-> cell.getValue().resultProperty());
+            tableResultsTime.setCellValueFactory(cell-> cell.getValue().timeProperty());
+            tableResultsDate.setCellValueFactory(cell-> cell.getValue().dateProperty());
+            tableResultsUser.setCellValueFactory(cell-> cell.getValue().userProperty());
+            tableResultsVersion.setCellValueFactory(cell -> cell.getValue().versionProperty());
+            tableResultsErrorNum.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
+            tableResults.setItems(resultList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         buttonLogsOn.setOnAction(event -> {
             try {
@@ -157,6 +189,14 @@ public class ControllerData {
                 tableStat.setVisible(false);
                 tableErrors.setVisible(false);
                 tableTests.setVisible(false);
+
+                ResultSet rs = connectorDb.statement.executeQuery(statementsDb.log);
+                while (rs.next()) {
+                    logtList.add(new ErrorLogDb(rs.getInt("test_result_id"), rs.getString("log")));
+                }
+                tableLogsNumber.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
+                tableLogsLog.setCellValueFactory(cell-> cell.getValue().logProperty());
+                tableLogs.setItems(logtList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -215,6 +255,15 @@ public class ControllerData {
                 tableLogs.setVisible(false);
                 tableStat.setVisible(false);
                 tableErrors.setVisible(false);
+                ResultSet rs = connectorDb.statement.executeQuery(statementsDb.test);
+                while (rs.next()) {
+                    testList.add(new TestDb(rs.getInt("id"), rs.getString("name"), rs.getString("version"), rs.getString("description")));
+                }
+                tableTestsNumber.setCellValueFactory(cell -> cell.getValue().idProperty().asObject());
+                tableTestsName.setCellValueFactory(cell-> cell.getValue().nameProperty());
+                tableTestsVersion.setCellValueFactory(cell -> cell.getValue().versionProperty());
+                tableTestsDescription.setCellValueFactory(cell -> cell.getValue().descriptionProperty());
+                tableTests.setItems(testList);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -86,7 +86,7 @@ CREATE TABLE teststation.test_result (
     id int unsigned NOT NULL AUTO_INCREMENT,
     test_id int unsigned NOT NULL COMMENT 'Test ID',
     date date NOT NULL COMMENT 'Date of a test',
-    time timestamp NOT NULL COMMENT 'Duration of a test',
+    time time NOT NULL COMMENT 'Duration of a test',
     result ENUM ('successful', 'unsuccessful') NOT NULL DEFAULT 'unsuccessful' COMMENT 'Result of a test',
     release_id int unsigned NOT NULL COMMENT 'Release ID',
     error_id int unsigned NOT NULL COMMENT 'Error ID',
@@ -121,23 +121,23 @@ CREATE TABLE teststation.test_stat (
 
 
 
-project		id		int unsigned	PK	Project version
+project	id		    int unsigned	PK	Project version
 		name		VARCHAR(40)		-	
 		version		VARCHAR(40)		-	
 
 
-release		id		int unsigned	PK	Release version
-		version		VARCHAR(40)	-	
+release	id		    int unsigned	PK	Release version
+		version		VARCHAR(40)	    -
 
 
-user		id		int unsigned	PK	User data
-		name		VARCHAR(40)	-	
+user	id  		int unsigned	PK	User data
+		name		VARCHAR(40)	    -
 
 
-test		id		int unsigned	PK	List of the tests
-		name		VARCHAR(80)	-	
+test	id  		int unsigned	PK	List of the tests
+		name		VARCHAR(80)	    -
 		project_id	int unsigned	FK	
-		description	text		-	
+		description	text		    -
 
 
 error_level	id		int unsigned	PK	Errors data
@@ -145,32 +145,46 @@ error_level	id		int unsigned	PK	Errors data
 		grade		int unsigned	-	
 
 
-error		id		int unsigned	PK	Known errors
-		name		VARCHAR(80)	-	
+error	id		    int unsigned	PK	Known errors
+		name		VARCHAR(80)	    -
 		level_id	int unsigned	-	
-		description	text		-	
+		description	text		    -
 
 
 test_result	id		int unsigned	PK	Test results data
 		test_id		int unsigned	FK	
-		date		date
-		time		timestamp	-	
-		result		ENUM	-	
+		date		date            -
+		time		time    	    -
+		result		ENUM	        -
 		release_id	int unsigned	FK	
 		error_id	int unsigned	FK	
 		user_id		int unsigned	FK	
 
 
 error_log	id		int unsigned	PK	Errors that have occurred
-		test_result_id	int		FK	
-		log		text		-	
+		test_result_id	int		    FK
+		log		text		        -
 
 
 test_stat	id		int unsigned	PK	Test statistics by day
-		period		date		-	
+		period		date		    -
 		total		int unsigned	-	
 		error_count	int unsigned	-	
 		most_often	int unsigned	-
-		
 
 
+
+SELECT t.id, t.name, p.version, t.description
+FROM test t JOIN project p ON t.project_id = p.id;
+
+
+SELECT tr.id, t.name, tr.result, tr.time, tr.date, u.name user, r.version, tr.error_id number
+FROM test_result tr JOIN test t
+ON tr.test_id = t.id
+JOIN user u
+ON tr.user_id = u.id
+JOIN `release` r
+ON tr.release_id = r.id;
+
+SELECT test_result_id, log
+FROM error_log;

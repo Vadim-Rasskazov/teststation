@@ -18,9 +18,10 @@
       <TableView fx:id="tableResults" layoutX="54.0" layoutY="115.0" prefHeight="275.0" prefWidth="1348.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="120.0">
         <columns>
           <TableColumn fx:id="tableResultsNumber" editable="false" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Number" />
-          <TableColumn fx:id="tableResultsName" editable="false" maxWidth="3000.0" minWidth="270.0" prefWidth="388.0" text="Name" />
-            <TableColumn fx:id="tableResultsResult" editable="false" maxWidth="180.0" minWidth="120.0" prefWidth="180.0" text="Result" />
-            <TableColumn fx:id="tableResultsTime" editable="false" maxWidth="210.0" minWidth="150.0" prefWidth="210.0" text="Time" />
+          <TableColumn fx:id="tableResultsName" editable="false" maxWidth="3000.0" minWidth="240.0" prefWidth="358.0" text="Name" />
+            <TableColumn fx:id="tableResultsResult" editable="false" maxWidth="120.0" minWidth="90.0" prefWidth="120.0" text="Result" />
+            <TableColumn fx:id="tableResultsTime" editable="false" maxWidth="150.0" minWidth="120.0" prefWidth="150.0" text="Time" />
+            <TableColumn fx:id="tableResultsDate" editable="false" maxWidth="150.0" minWidth="120.0" prefWidth="150.0" text="Date" />
             <TableColumn fx:id="tableResultsUser" editable="false" maxWidth="180.0" minWidth="120.0" prefWidth="180.0" text="User" />
             <TableColumn fx:id="tableResultsVersion" maxWidth="150.0" minWidth="90.0" prefWidth="150.0" text="Version" />
             <TableColumn fx:id="tableResultsErrorNum" editable="false" maxWidth="120.0" minWidth="90.0" prefWidth="120.0" text="Error number" />
