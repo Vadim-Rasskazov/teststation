@@ -45,22 +45,22 @@ public class ControllerData {
     private Button buttonTestsOn;
 
     @FXML
-    private TableView<?> tableErrors;
+    private TableView<ErrorDb> tableErrors;
 
     @FXML
-    private TableColumn<?, ?> tableErrorsDescription;
+    private TableColumn<ErrorDb, String> tableErrorsDescription;
 
     @FXML
-    private TableColumn<?, ?> tableErrorsLevel;
+    private TableColumn<ErrorDb, Integer> tableErrorsLevel;
 
     @FXML
-    private TableColumn<?, ?> tableErrorsName;
+    private TableColumn<ErrorDb, String> tableErrorsName;
 
     @FXML
-    private TableColumn<?, ?> tableErrorsNumber;
+    private TableColumn<ErrorDb, Integer> tableErrorsNumber;
 
     @FXML
-    private TableColumn<?, ?> tableErrorsVersion;
+    private TableColumn<ErrorDb, String> tableErrorsVersion;
 
     @FXML
     private TableView<ErrorLogDb> tableLogs;
@@ -114,28 +114,32 @@ public class ControllerData {
     private TableColumn<ResultDb, String> tableResultsVersion;
 
     @FXML
-    private TableView<?> tableStat;
+    private TableView<StatDb> tableStat;
 
     @FXML
-    private TableColumn<?, ?> tableStatCount;
+    private TableColumn<StatDb, Integer> tableStatCount;
 
     @FXML
-    private TableColumn<?, ?> tableStatMostOften;
+    private TableColumn<StatDb, Integer> tableStatMostOften;
 
     @FXML
-    private TableColumn<?, ?> tableStatPeriod;
+    private TableColumn<StatDb, String> tableStatPeriod;
 
     @FXML
-    private TableColumn<?, ?> tableStatTotal;
+    private TableColumn<StatDb, Integer> tableStatTotal;
 
     @FXML
     private AnchorPane windowData;
 
-    private ObservableList<TestDb> testList = FXCollections.observableArrayList();
-
     private ObservableList<ResultDb> resultList = FXCollections.observableArrayList();
 
-    private ObservableList<ErrorLogDb> logtList = FXCollections.observableArrayList();
+    private ObservableList<ErrorDb> errorList = FXCollections.observableArrayList();
+
+    private ObservableList<TestDb> testList = FXCollections.observableArrayList();
+
+    private ObservableList<ErrorLogDb> logList = FXCollections.observableArrayList();
+
+    private ObservableList<StatDb> statList = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
@@ -175,52 +179,6 @@ public class ControllerData {
             e.printStackTrace();
         }
 
-        buttonLogsOn.setOnAction(event -> {
-            try {
-                buttonLogsOff.setVisible(true);
-                buttonLogsOn.setVisible(false);
-                buttonStatOn.setVisible(true);
-                buttonErrorsOn.setVisible(true);
-                buttonTestsOn.setVisible(true);
-                buttonStatOff.setVisible(false);
-                buttonErrorsOff.setVisible(false);
-                buttonTestsOff.setVisible(false);
-                tableLogs.setVisible(true);
-                tableStat.setVisible(false);
-                tableErrors.setVisible(false);
-                tableTests.setVisible(false);
-
-                ResultSet rs = connectorDb.statement.executeQuery(statementsDb.log);
-                while (rs.next()) {
-                    logtList.add(new ErrorLogDb(rs.getInt("test_result_id"), rs.getString("log")));
-                }
-                tableLogsNumber.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
-                tableLogsLog.setCellValueFactory(cell-> cell.getValue().logProperty());
-                tableLogs.setItems(logtList);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        buttonStatOn.setOnAction(event -> {
-            try {
-                buttonStatOff.setVisible(true);
-                buttonLogsOn.setVisible(true);
-                buttonStatOn.setVisible(false);
-                buttonErrorsOn.setVisible(true);
-                buttonTestsOn.setVisible(true);
-                buttonLogsOff.setVisible(false);
-                buttonErrorsOff.setVisible(false);
-                buttonTestsOff.setVisible(false);
-                tableStat.setVisible(true);
-                tableLogs.setVisible(false);
-                tableErrors.setVisible(false);
-                tableTests.setVisible(false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
         buttonErrorsOn.setOnAction(event -> {
             try {
                 buttonErrorsOff.setVisible(true);
@@ -236,6 +194,16 @@ public class ControllerData {
                 tableLogs.setVisible(false);
                 tableStat.setVisible(false);
                 tableTests.setVisible(false);
+                ResultSet rs = connectorDb.statement.executeQuery(statementsDb.error);
+                while (rs.next()) {
+                    errorList.add(new ErrorDb(rs.getInt("id"), rs.getString("name"), rs.getInt("grade"), rs.getString("version"), rs.getString("description")));
+                }
+                tableErrorsNumber.setCellValueFactory(cell -> cell.getValue().idProperty().asObject());
+                tableErrorsName.setCellValueFactory(cell-> cell.getValue().nameProperty());
+                tableErrorsLevel.setCellValueFactory(cell -> cell.getValue().gradeProperty().asObject());
+                tableErrorsVersion.setCellValueFactory(cell -> cell.getValue().versionProperty());
+                tableErrorsDescription.setCellValueFactory(cell -> cell.getValue().descriptionProperty());
+                tableErrors.setItems(errorList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -264,6 +232,60 @@ public class ControllerData {
                 tableTestsVersion.setCellValueFactory(cell -> cell.getValue().versionProperty());
                 tableTestsDescription.setCellValueFactory(cell -> cell.getValue().descriptionProperty());
                 tableTests.setItems(testList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        buttonLogsOn.setOnAction(event -> {
+            try {
+                buttonLogsOff.setVisible(true);
+                buttonLogsOn.setVisible(false);
+                buttonStatOn.setVisible(true);
+                buttonErrorsOn.setVisible(true);
+                buttonTestsOn.setVisible(true);
+                buttonStatOff.setVisible(false);
+                buttonErrorsOff.setVisible(false);
+                buttonTestsOff.setVisible(false);
+                tableLogs.setVisible(true);
+                tableStat.setVisible(false);
+                tableErrors.setVisible(false);
+                tableTests.setVisible(false);
+                ResultSet rs = connectorDb.statement.executeQuery(statementsDb.log);
+                while (rs.next()) {
+                    logList.add(new ErrorLogDb(rs.getInt("test_result_id"), rs.getString("log")));
+                }
+                tableLogsNumber.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
+                tableLogsLog.setCellValueFactory(cell-> cell.getValue().logProperty());
+                tableLogs.setItems(logList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        buttonStatOn.setOnAction(event -> {
+            try {
+                buttonStatOff.setVisible(true);
+                buttonLogsOn.setVisible(true);
+                buttonStatOn.setVisible(false);
+                buttonErrorsOn.setVisible(true);
+                buttonTestsOn.setVisible(true);
+                buttonLogsOff.setVisible(false);
+                buttonErrorsOff.setVisible(false);
+                buttonTestsOff.setVisible(false);
+                tableStat.setVisible(true);
+                tableLogs.setVisible(false);
+                tableErrors.setVisible(false);
+                tableTests.setVisible(false);
+                ResultSet rs = connectorDb.statement.executeQuery(statementsDb.stat);
+                while (rs.next()) {
+                    statList.add(new StatDb(rs.getString("period"), rs.getInt("total"), rs.getInt("count"), rs.getInt("number")));
+                }
+                tableStatPeriod.setCellValueFactory(cell-> cell.getValue().periodProperty());
+                tableStatTotal.setCellValueFactory(cell -> cell.getValue().totalProperty().asObject());
+                tableStatCount.setCellValueFactory(cell -> cell.getValue().countProperty().asObject());
+                tableStatMostOften.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
+                tableStat.setItems(statList);
             } catch (Exception e) {
                 e.printStackTrace();
             }

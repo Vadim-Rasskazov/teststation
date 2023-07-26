@@ -17,5 +17,16 @@ public class StatementsDb {
 
     String log = """
         SELECT test_result_id, log
-        FROM error_log;""";
+        FROM error_log""";
+
+    String error = """
+        SELECT e.id, e.name, el.grade, p.version, e.description
+        FROM error e JOIN error_level el
+        ON e.level_id = el.id
+        JOIN project p
+        ON el.project_id = p.id""";
+
+    String stat = """
+        SELECT period, total, error_count, most_often
+        FROM test_stat""";
 }
