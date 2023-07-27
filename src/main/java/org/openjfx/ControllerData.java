@@ -131,15 +131,15 @@ public class ControllerData {
     @FXML
     private AnchorPane windowData;
 
-    private ObservableList<ResultDb> resultList = FXCollections.observableArrayList();
+    private final ObservableList<ResultDb> resultList = FXCollections.observableArrayList();
 
-    private ObservableList<ErrorDb> errorList = FXCollections.observableArrayList();
+    private final ObservableList<ErrorDb> errorList = FXCollections.observableArrayList();
 
-    private ObservableList<TestDb> testList = FXCollections.observableArrayList();
+    private final ObservableList<TestDb> testList = FXCollections.observableArrayList();
 
-    private ObservableList<ErrorLogDb> logList = FXCollections.observableArrayList();
+    private final ObservableList<ErrorLogDb> logList = FXCollections.observableArrayList();
 
-    private ObservableList<StatDb> statList = FXCollections.observableArrayList();
+    private final ObservableList<StatDb> statList = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
@@ -149,7 +149,7 @@ public class ControllerData {
         try {
             connectorDb.setCon();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         }
 
         MonitorSize size = new MonitorSize();
@@ -176,7 +176,7 @@ public class ControllerData {
             tableResultsErrorNum.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
             tableResults.setItems(resultList);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         }
 
         buttonErrorsOn.setOnAction(event -> {
@@ -205,7 +205,7 @@ public class ControllerData {
                 tableErrorsDescription.setCellValueFactory(cell -> cell.getValue().descriptionProperty());
                 tableErrors.setItems(errorList);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         });
 
@@ -233,7 +233,7 @@ public class ControllerData {
                 tableTestsDescription.setCellValueFactory(cell -> cell.getValue().descriptionProperty());
                 tableTests.setItems(testList);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         });
 
@@ -259,7 +259,7 @@ public class ControllerData {
                 tableLogsLog.setCellValueFactory(cell-> cell.getValue().logProperty());
                 tableLogs.setItems(logList);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         });
 
@@ -287,7 +287,7 @@ public class ControllerData {
                 tableStatMostOften.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
                 tableStat.setItems(statList);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         });
     }

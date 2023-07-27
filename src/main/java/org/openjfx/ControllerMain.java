@@ -233,7 +233,7 @@ public class ControllerMain {
                 buttonDataOff.setVisible(true);
                 buttonDataOn.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         });
 
@@ -243,7 +243,7 @@ public class ControllerMain {
                 buttonDataOn.setVisible(true);
                 buttonDataOff.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         });
 
@@ -283,7 +283,7 @@ public class ControllerMain {
                 checkTestMBookG.setVisible(true);
                 checkTestMBook.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestMBookR.setVisible(true);
                 checkTestMBook.setVisible(false);
             }
@@ -295,7 +295,7 @@ public class ControllerMain {
                 checkTestMBuyG.setVisible(true);
                 checkTestMBuy.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestMBuyR.setVisible(true);
                 checkTestMBuy.setVisible(false);
             }
@@ -307,7 +307,7 @@ public class ControllerMain {
                 checkTestDBookG.setVisible(true);
                 checkTestDBook.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestDBookR.setVisible(true);
                 checkTestDBook.setVisible(false);
             }
@@ -319,7 +319,7 @@ public class ControllerMain {
                 checkTestDBuyG.setVisible(true);
                 checkTestDBuy.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestDBuyR.setVisible(true);
                 checkTestDBuy.setVisible(false);
             }
@@ -331,7 +331,7 @@ public class ControllerMain {
                 checkTestCreateComG.setVisible(true);
                 checkTestCreateCom.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestCreateComR.setVisible(true);
                 checkTestCreateCom.setVisible(false);
             }
@@ -343,7 +343,7 @@ public class ControllerMain {
                 checkTestCreateRouteG.setVisible(true);
                 checkTestCreateRoute.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestCreateRouteR.setVisible(true);
                 checkTestCreateRoute.setVisible(false);
             }
@@ -355,7 +355,7 @@ public class ControllerMain {
                 checkTestSelectG.setVisible(true);
                 checkTestSelect.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestSelectR.setVisible(true);
                 checkTestSelect.setVisible(false);
             }
@@ -367,7 +367,7 @@ public class ControllerMain {
                 checkTestDeleteComG.setVisible(true);
                 checkTestDeleteCom.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestDeleteComR.setVisible(true);
                 checkTestDeleteCom.setVisible(false);
             }
@@ -379,7 +379,7 @@ public class ControllerMain {
                 checkTestCreateAllG.setVisible(true);
                 checkTestCreateAll.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestCreateAllR.setVisible(true);
                 checkTestCreateAll.setVisible(false);
             }
@@ -391,7 +391,7 @@ public class ControllerMain {
                 checkTestExperimentalG.setVisible(true);
                 checkTestExperimental.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
                 checkTestExperimentalR.setVisible(true);
                 checkTestExperimental.setVisible(false);
             }
