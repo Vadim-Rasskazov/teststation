@@ -116,6 +116,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="buttonTestExperimental" alignment="CENTER" layoutX="26.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Experimental Test" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="820.0">
+         <font>
+            <Font name="Manjari Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <Button fx:id="buttonExit" alignment="CENTER" layoutX="412.0" layoutY="1002.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Exit" textAlignment="CENTER" textFill="#f07732" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
@@ -158,33 +166,16 @@
          <font>
             <Font name="Manjari Bold" size="15.0" />
          </font></TextField>
-      <Circle fx:id="checkTestMBookR" fill="#ff0000cc" layoutX="462.0" layoutY="145.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="130.0" />
-      <Circle fx:id="checkTestMBookG" fill="#00ff00cc" layoutX="467.0" layoutY="145.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="130.0" />
       <Circle fx:id="checkTestMBook" disable="true" fill="#293239" layoutX="467.0" layoutY="145.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="130.0" />
-      <Circle fx:id="checkTestMBuyR" fill="#ff0000cc" layoutX="465.0" layoutY="220.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="205.0" />
-      <Circle fx:id="checkTestMBuyG" fill="#00ff00cc" layoutX="470.0" layoutY="220.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="205.0" />
       <Circle fx:id="checkTestMBuy" disable="true" fill="#293239" layoutX="470.0" layoutY="220.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="205.0" />
-      <Circle fx:id="checkTestDBookR" fill="#ff0000cc" layoutX="463.0" layoutY="298.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="280.0" />
-      <Circle fx:id="checkTestDBookG" fill="#00ff00cc" layoutX="468.0" layoutY="298.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="280.0" />
       <Circle fx:id="checkTestDBook" disable="true" fill="#293239" layoutX="468.0" layoutY="298.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="280.0" />
-      <Circle fx:id="checkTestDBuyR" fill="#ff0000cc" layoutX="466.0" layoutY="373.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="355.0" />
-      <Circle fx:id="checkTestDBuyG" fill="#00ff00cc" layoutX="471.0" layoutY="373.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="355.0" />
       <Circle fx:id="checkTestDBuy" disable="true" fill="#293239" layoutX="471.0" layoutY="373.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="355.0" />
-      <Circle fx:id="checkTestCreateComR" fill="#ff0000cc" layoutX="463.0" layoutY="445.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="430.0" />
-      <Circle fx:id="checkTestCreateComG" fill="#00ff00cc" layoutX="468.0" layoutY="445.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="430.0" />
       <Circle fx:id="checkTestCreateCom" disable="true" fill="#293239" layoutX="468.0" layoutY="445.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="430.0" />
-      <Circle fx:id="checkTestCreateRouteR" fill="#ff0000cc" layoutX="466.0" layoutY="520.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="505.0" />
-      <Circle fx:id="checkTestCreateRouteG" fill="#00ff00cc" layoutX="471.0" layoutY="520.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="505.0" />
       <Circle fx:id="checkTestCreateRoute" disable="true" fill="#293239" layoutX="471.0" layoutY="520.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="505.0" />
-      <Circle fx:id="checkTestSelectR" fill="#ff0000cc" layoutX="464.0" layoutY="598.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="580.0" />
-      <Circle fx:id="checkTestSelectG" fill="#00ff00cc" layoutX="469.0" layoutY="598.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="580.0" />
       <Circle fx:id="checkTestSelect" disable="true" fill="#293239" layoutX="469.0" layoutY="598.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="580.0" />
-      <Circle fx:id="checkTestDeleteComR" fill="#ff0000cc" layoutX="467.0" layoutY="673.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="655.0" />
-      <Circle fx:id="checkTestDeleteComG" fill="#00ff00cc" layoutX="472.0" layoutY="673.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="655.0" />
       <Circle fx:id="checkTestDeleteCom" disable="true" fill="#293239" layoutX="472.0" layoutY="673.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="655.0" />
-      <Circle fx:id="checkTestCreateAllR" fill="#ff0000cc" layoutX="461.0" layoutY="745.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="730.0" />
-      <Circle fx:id="checkTestCreateAllG" fill="#00ff00cc" layoutX="466.0" layoutY="745.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="730.0" />
       <Circle fx:id="checkTestCreateAll" disable="true" fill="#293239" layoutX="466.0" layoutY="745.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="730.0" />
+      <Circle fx:id="checkTestExperimental" disable="true" fill="#293239" layoutX="472.0" layoutY="860.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="830.0" />
       <ImageView fx:id="imageLogo" cache="true" fitHeight="200.0" fitWidth="200.0" layoutX="156.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" style="visibility: true;" visible="false">
          <image>
             <Image url="@logo.png" />
@@ -193,16 +184,5 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
-      <Button fx:id="buttonTestExperimental" alignment="CENTER" layoutX="26.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Experimental Test" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="820.0">
-         <font>
-            <Font name="Manjari Bold" size="20.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Circle fx:id="checkTestExperimentalR" fill="#ff0000cc" layoutX="467.0" layoutY="860.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="830.0" />
-      <Circle fx:id="checkTestExperimentalG" fill="#00ff00cc" layoutX="472.0" layoutY="860.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="830.0" />
-      <Circle fx:id="checkTestExperimental" disable="true" fill="#293239" layoutX="472.0" layoutY="860.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="830.0" />
    </children>
 </AnchorPane>

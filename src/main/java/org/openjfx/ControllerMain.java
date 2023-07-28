@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -81,91 +82,31 @@ public class ControllerMain {
     private Circle checkTestCreateAll;
 
     @FXML
-    private Circle checkTestCreateAllG;
-
-    @FXML
-    private Circle checkTestCreateAllR;
-
-    @FXML
     private Circle checkTestCreateCom;
-
-    @FXML
-    private Circle checkTestCreateComG;
-
-    @FXML
-    private Circle checkTestCreateComR;
 
     @FXML
     private Circle checkTestCreateRoute;
 
     @FXML
-    private Circle checkTestCreateRouteG;
-
-    @FXML
-    private Circle checkTestCreateRouteR;
-
-    @FXML
     private Circle checkTestDBook;
-
-    @FXML
-    private Circle checkTestDBookG;
-
-    @FXML
-    private Circle checkTestDBookR;
 
     @FXML
     private Circle checkTestDBuy;
 
     @FXML
-    private Circle checkTestDBuyG;
-
-    @FXML
-    private Circle checkTestDBuyR;
-
-    @FXML
     private Circle checkTestDeleteCom;
-
-    @FXML
-    private Circle checkTestDeleteComG;
-
-    @FXML
-    private Circle checkTestDeleteComR;
 
     @FXML
     private Circle checkTestExperimental;
 
     @FXML
-    private Circle checkTestExperimentalG;
-
-    @FXML
-    private Circle checkTestExperimentalR;
-
-    @FXML
     private Circle checkTestMBook;
-
-    @FXML
-    private Circle checkTestMBookG;
-
-    @FXML
-    private Circle checkTestMBookR;
 
     @FXML
     private Circle checkTestMBuy;
 
     @FXML
-    private Circle checkTestMBuyG;
-
-    @FXML
-    private Circle checkTestMBuyR;
-
-    @FXML
     private Circle checkTestSelect;
-
-    @FXML
-    private Circle checkTestSelectG;
-
-    @FXML
-    private Circle checkTestSelectR;
 
     @FXML
     private TextField fieldTestSettingsFrom;
@@ -280,120 +221,100 @@ public class ControllerMain {
         buttonTestMBook.setOnAction(event -> {
             try {
                 test.bookingMobile(from, to);
-                checkTestMBookG.setVisible(true);
-                checkTestMBook.setVisible(false);
+                checkTestMBook.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestMBookR.setVisible(true);
-                checkTestMBook.setVisible(false);
+                checkTestMBook.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestMBuy.setOnAction(event -> {
             try {
                 test.buyingMobile(from, to);
-                checkTestMBuyG.setVisible(true);
-                checkTestMBuy.setVisible(false);
+                checkTestMBuy.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestMBuyR.setVisible(true);
-                checkTestMBuy.setVisible(false);
+                checkTestMBuy.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestDBook.setOnAction(event -> {
             try {
                 test.bookingDesktop(from, to);
-                checkTestDBookG.setVisible(true);
-                checkTestDBook.setVisible(false);
+                checkTestDBook.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestDBookR.setVisible(true);
-                checkTestDBook.setVisible(false);
+                checkTestDBook.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestDBuy.setOnAction(event -> {
             try {
                 test.buyingDesktop(from, to);
-                checkTestDBuyG.setVisible(true);
-                checkTestDBuy.setVisible(false);
+                checkTestDBuy.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestDBuyR.setVisible(true);
-                checkTestDBuy.setVisible(false);
+                checkTestDBuy.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestCreateCom.setOnAction(event -> {
             try {
                 test.createCompany();
-                checkTestCreateComG.setVisible(true);
-                checkTestCreateCom.setVisible(false);
+                checkTestCreateCom.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestCreateComR.setVisible(true);
-                checkTestCreateCom.setVisible(false);
+                checkTestCreateCom.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestCreateRoute.setOnAction(event -> {
             try {
                 test.createRoute();
-                checkTestCreateRouteG.setVisible(true);
-                checkTestCreateRoute.setVisible(false);
+                checkTestCreateRoute.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestCreateRouteR.setVisible(true);
-                checkTestCreateRoute.setVisible(false);
+                checkTestCreateRoute.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestSelect.setOnAction(event -> {
             try {
                 test.salesActivation();
-                checkTestSelectG.setVisible(true);
-                checkTestSelect.setVisible(false);
+                checkTestSelect.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestSelectR.setVisible(true);
-                checkTestSelect.setVisible(false);
+                checkTestSelect.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestDeleteCom.setOnAction(event -> {
             try {
                 test.deleteCompany();
-                checkTestDeleteComG.setVisible(true);
-                checkTestDeleteCom.setVisible(false);
+                checkTestDeleteCom.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestDeleteComR.setVisible(true);
-                checkTestDeleteCom.setVisible(false);
+                checkTestDeleteCom.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestCreateAll.setOnAction(event -> {
             try {
                 test.createAll();
-                checkTestCreateAllG.setVisible(true);
-                checkTestCreateAll.setVisible(false);
+                checkTestCreateAll.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestCreateAllR.setVisible(true);
-                checkTestCreateAll.setVisible(false);
+                checkTestCreateAll.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonTestExperimental.setOnAction(event -> {
             try {
                 exTest.experimentBot();
-                checkTestExperimentalG.setVisible(true);
-                checkTestExperimental.setVisible(false);
+                checkTestExperimental.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                checkTestExperimentalR.setVisible(true);
-                checkTestExperimental.setVisible(false);
+                checkTestExperimental.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 

@@ -132,13 +132,9 @@ public class ControllerData {
     private AnchorPane windowData;
 
     private final ObservableList<ResultDb> resultList = FXCollections.observableArrayList();
-
     private final ObservableList<ErrorDb> errorList = FXCollections.observableArrayList();
-
     private final ObservableList<TestDb> testList = FXCollections.observableArrayList();
-
     private final ObservableList<ErrorLogDb> logList = FXCollections.observableArrayList();
-
     private final ObservableList<StatDb> statList = FXCollections.observableArrayList();
 
     @FXML
@@ -181,6 +177,7 @@ public class ControllerData {
 
         buttonErrorsOn.setOnAction(event -> {
             try {
+                tableErrors.getItems().clear();
                 buttonErrorsOff.setVisible(true);
                 buttonLogsOn.setVisible(true);
                 buttonStatOn.setVisible(true);
@@ -211,6 +208,7 @@ public class ControllerData {
 
         buttonTestsOn.setOnAction(event -> {
             try {
+                tableTests.getItems().clear();
                 buttonTestsOff.setVisible(true);
                 buttonLogsOn.setVisible(true);
                 buttonStatOn.setVisible(true);
@@ -239,6 +237,7 @@ public class ControllerData {
 
         buttonLogsOn.setOnAction(event -> {
             try {
+                tableLogs.getItems().clear();
                 buttonLogsOff.setVisible(true);
                 buttonLogsOn.setVisible(false);
                 buttonStatOn.setVisible(true);
@@ -265,6 +264,7 @@ public class ControllerData {
 
         buttonStatOn.setOnAction(event -> {
             try {
+                tableStat.getItems().clear();
                 buttonStatOff.setVisible(true);
                 buttonLogsOn.setVisible(true);
                 buttonStatOn.setVisible(false);
