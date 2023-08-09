@@ -64,12 +64,16 @@ public class ExperimentalTest {
         driver.findElement(By.id("saveSetting")).click();
         Thread.sleep(1500);
         driver.get(conf.experimentalBotUrl);
-        Thread.sleep(3000);
+        Thread.sleep(30000);
+        JavascriptExecutor js = driver;
+        js.executeScript("return document.getElementById('channel-header').remove();");
+        js.executeScript("return document.getElementById('global-header').remove();");
         for (int i = 1; i < 1000; i++ ) {
-            List<WebElement> elementList = driver.findElements(By.xpath("//p[contains(text(),'departure_provider_source.departure_provider_id_source_id_idx')]"));
-            elementList.get(elementList.size() - 1).click();
+            //List<WebElement> elementList = driver.findElements(By.xpath("//p[contains(text(),'Allowed memory size')]"));
+            //elementList.get(elementList.size() - 1).click();
+            driver.findElement(By.xpath("//p[contains(text(),'Allowed memory size')]")).click();
             Thread.sleep(200);
-            driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[3]/div/div/div/div/div/div/div/div[1]/div[2]/div//div[1]/div/div/div[2]/div[1]/div[2]/div/div[2]/div[5]/button")).click();
+            driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div/div[1]/div[2]/div//div[1]/div/div/div[2]/div[1]/div[2]/div/div[2]/div[5]/button")).click();
             Thread.sleep(200);
             driver.findElement(By.cssSelector("[aria-label=Delete]")).click();
             Thread.sleep(200);

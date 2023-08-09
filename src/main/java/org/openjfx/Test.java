@@ -548,6 +548,7 @@ public class Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
         driver.findElement(By.id("_autoId_9_")).sendKeys(conf.filePath);
         driver.findElement(By.id("_autoId_10_")).click();
+        Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[3]/a"))).click();
         driver.findElement(By.name("create_timetable")).click();
         driver.findElement(By.id("_autoId_29_")).click();
@@ -573,7 +574,9 @@ public class Test {
         driver.findElement(By.id("_autoId_76_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[4]")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a"))).click(); //company information
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("company_bik"))).sendKeys("111111111");
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("company_inn"))).sendKeys(inn);
+        driver.findElement(By.name("company_ogrn")).sendKeys(ogrnip);
+        driver.findElement(By.name("company_bik")).sendKeys("111111111");
         driver.findElement(By.name("company_bank")).sendKeys("Неальфа");
         driver.findElement(By.name("company_rs")).sendKeys("40802810229120001111");
         driver.findElement(By.name("company_ks")).sendKeys("11111111111111111111");
@@ -582,14 +585,14 @@ public class Test {
         driver.findElement(By.name("post_address_index")).sendKeys("170000");
         driver.findElement(By.name("post_address_text")).sendKeys("улица Пушкина");
         driver.findElement(By.name("post_address_recipient")).sendKeys("Тестировщик");
-        driver.findElement(By.id("_autoId_22_")).sendKeys("89009009090");
-        driver.findElement(By.id("_autoId_23_")).sendKeys("Тестировщик");
-        driver.findElement(By.id("_autoId_24_")).click();
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/div/div[1]/ul/li[3]/a")).click();
+        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[18]/div/fieldset/div[1]/div[1]/div/input")).sendKeys("89009009090");
+        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[18]/div/fieldset/div[1]/div[2]/input")).sendKeys("Тестировщик");
+        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[19]/div/button")).click();
+        Thread.sleep(1500);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[3]/a"))).click();
         Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales-refund']/form/div[2]/div/div/label[2]"))).click(); //return rules
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".form-group > #_autoId_37_"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".form-group > #_autoId_44_"))).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//*[@id='sales']/div/div[1]/ul/li[1]/a")).click();
         Thread.sleep(600);
@@ -924,6 +927,8 @@ public class Test {
         Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a"))).click(); //company information
         Thread.sleep(900);
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("company_inn"))).sendKeys(inn);
+        driver.findElement(By.name("company_ogrn")).sendKeys(ogrnip);
         driver.findElement(By.name("company_bik")).sendKeys("111111111");
         driver.findElement(By.name("company_bank")).sendKeys("Неальфа");
         driver.findElement(By.name("company_rs")).sendKeys("40802810229120001111");
@@ -933,14 +938,14 @@ public class Test {
         driver.findElement(By.name("post_address_index")).sendKeys("170000");
         driver.findElement(By.name("post_address_text")).sendKeys("улица Пушкина");
         driver.findElement(By.name("post_address_recipient")).sendKeys("Тестировщик");
-        driver.findElement(By.id("_autoId_22_")).sendKeys("89009009090");
-        driver.findElement(By.id("_autoId_23_")).sendKeys("Тестировщик");
-        driver.findElement(By.id("_autoId_24_")).click();
-        Thread.sleep(900);
-        driver.findElement(By.xpath("//*[@id='sales']/div/div[1]/ul/li[3]/a")).click();
+        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[18]/div/fieldset/div[1]/div[1]/div/input")).sendKeys("89009009090");
+        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[18]/div/fieldset/div[1]/div[2]/input")).sendKeys("Тестировщик");
+        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[19]/div/button")).click();
+        Thread.sleep(1500);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[3]/a"))).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//*[@id='sales-refund']/form/div[2]/div/div/label[2]")).click(); //return rules
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".form-group > #_autoId_37_"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".form-group > #_autoId_44_"))).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//*[@id='sales']/div/div[1]/ul/li[1]/a")).click();
         Thread.sleep(600);
