@@ -200,17 +200,17 @@ public class Test {
         try {
             driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[4]/div[2]/div/div/div/div/div/select/option[2]")).click();
         } catch (Exception e) {
-            System.out.println("First passenger`s tariff can`t be chosen");
+            System.out.println("Warning: First passenger`s tariff can`t be chosen");
         }
         try {
             driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[2]/div[2]/div[4]/div[2]/div/div/div/div/div/select/option[1]")).click();
         } catch (Exception e) {
-            System.out.println("Second passenger`s tariff can`t be chosen");
+            System.out.println("Warning: Second passenger`s tariff can`t be chosen");
         }
         try {
             driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[1]/div[2]/div[4]/div[2]/div/div/div/div/div/select/option[2]")).click();
         } catch (Exception e) {
-            System.out.println("Third passenger`s tariff can`t be chosen");
+            System.out.println("Warning: Third passenger`s tariff can`t be chosen");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
     }
@@ -719,6 +719,7 @@ public class Test {
         driver.findElement(By.xpath("//*[@id='company-edit']/div[5]/div[1]/table/tbody/tr[6]/td[7]")).click(); //last date
         driver.findElement(By.cssSelector(".modal-footer > #_autoId_15_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a")).click();
+        Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.name("agency_contract_delegate_fio"))).sendKeys("Тестировщик Т.Т.");
         driver.findElement(By.name("agency_contract_start_date")).click(); //start date
         driver.findElement(By.xpath("//*[@id='company-edit']/div[3]/div[1]/table/tbody/tr[1]/td[1]")).click(); //fist date
