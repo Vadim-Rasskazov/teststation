@@ -247,16 +247,16 @@ public class Test {
             try { //SPB Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[3]/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[4]/button")).click();
                 System.out.println("Info: SPB Tinkoff payment system was chosen");
                 } catch (Exception ex) { //Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff);//test card number
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]/tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff);//test card number
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
+                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[2]/button")).click();
                 System.out.println("Info: Tinkoff payment system was chosen");
            }
