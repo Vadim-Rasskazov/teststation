@@ -110,6 +110,25 @@ public class Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
     }
 
+    void passengerBaggageM() { //tariffs desktop version
+        try {
+            driver.findElement(By.xpath("//fieldset[1]/*[@class='row']/button")).click();
+        } catch (Exception e) {
+            System.out.println("Warning: First passenger`s tariff can`t be chosen");
+        }
+        try {
+            driver.findElement(By.xpath("//fieldset[2]/*[@class='row']/button")).click();
+        } catch (Exception e) {
+            System.out.println("Warning: Second passenger`s tariff can`t be chosen");
+        }
+        try {
+            driver.findElement(By.xpath("//fieldset[3]/*[@class='row']/button")).click();
+        } catch (Exception e) {
+            System.out.println("Warning: Third passenger`s tariff can`t be chosen");
+        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
+    }
+
     void insuranceM() { //insurance mobile version
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900));
         try {
@@ -215,6 +234,25 @@ public class Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
     }
 
+    void passengerBaggageD() { //tariffs desktop version
+        try {
+            driver.findElement(By.xpath("//fieldset[3]/div[2]/div[4]/div[3]/div/div/div[3]/span")).click();
+        } catch (Exception e) {
+            System.out.println("Warning: First passenger`s tariff can`t be chosen");
+        }
+        try {
+            driver.findElement(By.xpath("//fieldset[2]/div[2]/div[4]/div[3]/div/div/div[3]/span")).click();
+        } catch (Exception e) {
+            System.out.println("Warning: Second passenger`s tariff can`t be chosen");
+        }
+        try {
+            driver.findElement(By.xpath("//fieldset[1]/div[2]/div[4]/div[3]/div/div/div[3]/span")).click();
+        } catch (Exception e) {
+            System.out.println("Warning: Third passenger`s tariff can`t be chosen");
+        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
+    }
+
     void insuranceD() { //insurance desktop version
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900));
         try {
@@ -310,6 +348,7 @@ public class Test {
         thirdPassengerM ();
         passengerSeatsM ();
         passengerTariffsM ();
+        passengerBaggageM();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='booking']/fieldset[2]/button"))).click();
         driver.findElement(By.id("booking-phone-id")).sendKeys(conf.phone);
         driver.findElement(By.id("booking-email-id")).sendKeys(conf.mail);
@@ -349,6 +388,7 @@ public class Test {
         thirdPassengerM ();
         passengerSeatsM ();
         passengerTariffsM ();
+        passengerBaggageM();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='booking']/fieldset[2]/button"))).click();
         driver.findElement(By.id("booking-phone-id")).sendKeys(conf.phone);
         driver.findElement(By.id("booking-email-id")).sendKeys(conf.mail);
@@ -410,6 +450,7 @@ public class Test {
         Thread.sleep(300);
         passengerSeatsD ();
         passengerTariffsD ();
+        passengerBaggageD();
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".button.button-green.booking-form__submit"))).click();
         driver.findElement(By.name("tel")).sendKeys(conf.phone);
         driver.findElement(By.name("email")).sendKeys(conf.mail);
@@ -444,6 +485,7 @@ public class Test {
         Thread.sleep(300);
         passengerSeatsD ();
         passengerTariffsD ();
+        passengerBaggageD();
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".button.button-green.booking-form__submit"))).click();
         driver.findElement(By.name("tel")).sendKeys(conf.phone);
         driver.findElement(By.name("email")).sendKeys(conf.mail);
