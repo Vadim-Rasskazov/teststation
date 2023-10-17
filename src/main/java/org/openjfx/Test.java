@@ -499,7 +499,7 @@ public class Test {
             e.printStackTrace();
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
-        List<WebElement> links = driver.findElements(By.cssSelector(".va-middle"));
+        List<WebElement> links = driver.findElements(By.xpath("//*[@title='Вы будете перенаправлены на сайт платёжной системы']"));
         String orderUrl = driver.getCurrentUrl();
         links.get(new Random().nextInt(links.size())).click();
         Thread.sleep(1800);
