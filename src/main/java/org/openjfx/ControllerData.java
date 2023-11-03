@@ -3,7 +3,6 @@ package org.openjfx;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -120,13 +119,16 @@ public class ControllerData {
     private TableColumn<StatDb, Integer> tableStatCount;
 
     @FXML
-    private TableColumn<StatDb, Integer> tableStatMostOften;
+    private TableColumn<StatDb, String> tableStatMostOften;
 
     @FXML
     private TableColumn<StatDb, String> tableStatPeriod;
 
     @FXML
     private TableColumn<StatDb, Integer> tableStatTotal;
+
+    @FXML
+    private Button buttonStatReload;
 
     @FXML
     private AnchorPane windowData;
@@ -191,6 +193,7 @@ public class ControllerData {
                 tableLogs.setVisible(false);
                 tableStat.setVisible(false);
                 tableTests.setVisible(false);
+                buttonStatReload.setVisible(false);
                 ResultSet rs = connectorDb.statement.executeQuery(statementsDb.error);
                 while (rs.next()) {
                     errorList.add(new ErrorDb(rs.getInt("id"), rs.getString("name"), rs.getInt("grade"), rs.getString("version"), rs.getString("description")));
@@ -221,6 +224,7 @@ public class ControllerData {
                 tableLogs.setVisible(false);
                 tableStat.setVisible(false);
                 tableErrors.setVisible(false);
+                buttonStatReload.setVisible(false);
                 ResultSet rs = connectorDb.statement.executeQuery(statementsDb.test);
                 while (rs.next()) {
                     testList.add(new TestDb(rs.getInt("id"), rs.getString("name"), rs.getString("version"), rs.getString("description")));
@@ -250,6 +254,7 @@ public class ControllerData {
                 tableStat.setVisible(false);
                 tableErrors.setVisible(false);
                 tableTests.setVisible(false);
+                buttonStatReload.setVisible(false);
                 ResultSet rs = connectorDb.statement.executeQuery(statementsDb.log);
                 while (rs.next()) {
                     logList.add(new ErrorLogDb(rs.getInt("test_result_id"), rs.getString("log")));
@@ -270,6 +275,7 @@ public class ControllerData {
                 buttonStatOn.setVisible(false);
                 buttonErrorsOn.setVisible(true);
                 buttonTestsOn.setVisible(true);
+                buttonStatReload.setVisible(true);
                 buttonLogsOff.setVisible(false);
                 buttonErrorsOff.setVisible(false);
                 buttonTestsOff.setVisible(false);
@@ -279,12 +285,41 @@ public class ControllerData {
                 tableTests.setVisible(false);
                 ResultSet rs = connectorDb.statement.executeQuery(statementsDb.stat);
                 while (rs.next()) {
-                    statList.add(new StatDb(rs.getString("period"), rs.getInt("total"), rs.getInt("count"), rs.getInt("number")));
+                    statList.add(new StatDb(rs.getString("period"), rs.getInt("total"), rs.getInt("error_count"), rs.getString("most_often")));
                 }
                 tableStatPeriod.setCellValueFactory(cell-> cell.getValue().periodProperty());
                 tableStatTotal.setCellValueFactory(cell -> cell.getValue().totalProperty().asObject());
                 tableStatCount.setCellValueFactory(cell -> cell.getValue().countProperty().asObject());
-                tableStatMostOften.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
+                tableStatMostOften.setCellValueFactory(cell -> cell.getValue().nameProperty());
+                tableStat.setItems(statList);
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        });
+
+        buttonStatReload.setOnAction(event -> {
+            try {
+                tableStat.getItems().clear();
+                try {
+                    ResultSet rs = connectorDb.statement.executeQuery(statementsDb.statCount);
+                    int statCount = 0;
+                    while (rs.next()) {
+                        statCount = rs.getInt(1);
+                    }
+                    for (int i = 1; i <= statCount; i++ ) {
+                        connectorDb.statement.executeUpdate(statementsDb.statInsert);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace(System.out);
+                }
+                ResultSet rs = connectorDb.statement.executeQuery(statementsDb.stat);
+                while (rs.next()) {
+                    statList.add(new StatDb(rs.getString("period"), rs.getInt("total"), rs.getInt("error_count"), rs.getString("most_often")));
+                }
+                tableStatPeriod.setCellValueFactory(cell-> cell.getValue().periodProperty());
+                tableStatTotal.setCellValueFactory(cell -> cell.getValue().totalProperty().asObject());
+                tableStatCount.setCellValueFactory(cell -> cell.getValue().countProperty().asObject());
+                tableStatMostOften.setCellValueFactory(cell -> cell.getValue().nameProperty());
                 tableStat.setItems(statList);
             } catch (Exception e) {
                 e.printStackTrace(System.out);

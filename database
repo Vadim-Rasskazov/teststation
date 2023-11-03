@@ -89,7 +89,7 @@ CREATE TABLE teststation.test_result (
     time time NOT NULL COMMENT 'Duration of a test',
     result ENUM ('successful', 'unsuccessful') NOT NULL DEFAULT 'unsuccessful' COMMENT 'Result of a test',
     release_id int unsigned NOT NULL COMMENT 'Release ID',
-    error_id int unsigned NOT NULL COMMENT 'Error ID',
+    error_id int unsigned DEFAULT NULL COMMENT 'Error ID',
     user_id int unsigned NOT NULL COMMENT 'User ID',
     PRIMARY KEY (id),
     CONSTRAINT fk_result_test FOREIGN KEY (test_id) REFERENCES teststation.test (id),
@@ -115,7 +115,7 @@ CREATE TABLE teststation.test_stat (
     period date NOT NULL COMMENT 'Date of tests',
     total int unsigned DEFAULT NULL COMMENT 'Total number of tests',
     error_count int unsigned DEFAULT NULL COMMENT 'Total number of errors',
-    most_often int unsigned DEFAULT NULL COMMENT 'Most often error',
+    most_often VARCHAR(80) DEFAULT NULL COMMENT 'Most often error',
     PRIMARY KEY (id)
 ) ENGINE=InnoDB COMMENT 'Test stat table';
 

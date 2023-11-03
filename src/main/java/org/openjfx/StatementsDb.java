@@ -29,4 +29,31 @@ public class StatementsDb {
     String stat = """
         SELECT period, total, error_count, most_often
         FROM test_stat""";
+
+    String statCount = """
+        SELECT COUNT(DISTINCT date)
+        FROM test_result
+        WHERE date NOT IN (SELECT period FROM test_stat) AND date!=CURDATE()""";
+
+    String statInsert = """
+        INSERT INTO test_stat (period, total, error_count, most_often)
+        SELECT date period, COUNT(*) total, COUNT(error_id) error_count, (
+            SELECT name
+            FROM error JOIN test_result ON test_result.error_id=error.id
+            WHERE test_result.date=(
+                SELECT DISTINCT date
+                FROM test_result
+                WHERE date NOT IN (SELECT period FROM test_stat) AND date!=CURDATE()
+                LIMIT 1)
+            GROUP BY date, error_id
+            ORDER BY COUNT(error_id) DESC
+            LIMIT 1
+            ) most_often
+        FROM test_result
+        WHERE date=(
+            SELECT DISTINCT date
+            FROM test_result
+            WHERE date NOT IN (SELECT period FROM test_stat) AND date!=CURDATE()
+             LIMIT 1)
+        GROUP BY date""";
 }

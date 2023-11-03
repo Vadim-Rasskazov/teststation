@@ -91,6 +91,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="buttonStatReload" alignment="CENTER" layoutX="629.0" layoutY="420.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="🔄" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="420.0">
+         <font>
+            <Font name="Manjari Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <TableView fx:id="tableErrors" layoutX="74.0" layoutY="135.0" prefHeight="275.0" prefWidth="1348.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="500.0">
          <columns>
             <TableColumn fx:id="tableErrorsNumber" editable="false" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Number" />

@@ -9,13 +9,13 @@ public class StatDb {
     private final StringProperty period;
     private final IntegerProperty total;
     private final IntegerProperty count;
-    private final IntegerProperty number;
+    private final StringProperty name;
 
-    StatDb(String period, int total, int count, int number) {
+    StatDb(String period, int total, int count, String name) {
         this.period = new SimpleStringProperty(period);
         this.total = new SimpleIntegerProperty(total);
         this.count = new SimpleIntegerProperty(count);
-        this.number = new SimpleIntegerProperty(number);
+        this.name = new SimpleStringProperty(name);
     }
 
     public String getPeriod() {
@@ -54,15 +54,15 @@ public class StatDb {
         this.count.set(count);
     }
 
-    public int getNumber() {
-        return number.get();
+    public String getName() {
+        return name.get();
     }
 
-    public IntegerProperty numberProperty() {
-        return number;
+    public StringProperty nameProperty() {
+        return name;
     }
 
-    public void setNumber(int number) {
-        this.number.set(number);
+    public void setName(String name) {
+        this.name.set(name);
     }
 }
