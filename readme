@@ -1,7 +1,7 @@
 Put folder teststation in home directory.
 
 
-Install Java 19 and Maven 4 (for Ubuntu 22.04)
+Install Java 21 and Maven 4 (for Ubuntu 23.04)
 
 Run script:
 java.sh
