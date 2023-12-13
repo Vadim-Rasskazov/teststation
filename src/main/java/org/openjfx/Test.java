@@ -546,7 +546,7 @@ public class Test {
         driver.findElement(By.name("phone[0][phone_number]")).sendKeys("89009009090");
         driver.findElement(By.name("phone[0][phone_explanation]")).sendKeys("Диспетчер");
         driver.findElement(By.name("company_address")).sendKeys("улица Пушкина");
-        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='_autoId_19__ifr']"))); //comments
+        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='_autoId_20__ifr']"))); //comments
         driver.findElement(By.xpath("//body[@id='tinymce']/p")).sendKeys("Компания создана автоматически для тестирования");
         driver.switchTo().defaultContent(); //main page
         driver.findElement(By.name("company_site")).sendKeys("https://www.avtovokzaly.ru");
@@ -593,27 +593,27 @@ public class Test {
         Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[3]/a"))).click();
         driver.findElement(By.name("create_timetable")).click();
-        driver.findElement(By.id("_autoId_29_")).click();
-        driver.findElement(By.id("_autoId_34_")).click();
-        driver.findElement(By.id("_autoId_39_")).click();
-        driver.findElement(By.id("_autoId_44_")).click();
-        driver.findElement(By.id("_autoId_49_")).click();
-        driver.findElement(By.id("_autoId_55_")).click();
+        driver.findElement(By.id("_autoId_30_")).click();
+        driver.findElement(By.id("_autoId_35_")).click();
+        driver.findElement(By.id("_autoId_40_")).click();
+        driver.findElement(By.id("_autoId_45_")).click();
+        driver.findElement(By.id("_autoId_50_")).click();
+        driver.findElement(By.id("_autoId_56_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[3]/div[3]/div/div[2]/div[9]")).click(); //work start
         driver.findElement(By.xpath("//*[@id='company-edit']/div[3]/div[3]/div/div[3]/div[1]")).click();
-        driver.findElement(By.id("_autoId_56_")).click();
+        driver.findElement(By.id("_autoId_57_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[4]/div[3]/div/div[2]/div[21]")).click(); //work end
         driver.findElement(By.xpath("//*[@id='company-edit']/div[4]/div[3]/div/div[3]/div[1]")).click();
-        driver.findElement(By.id("_autoId_57_")).click();
+        driver.findElement(By.id("_autoId_58_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[5]/div[3]/div/div[2]/div[14]")).click(); //break start
         driver.findElement(By.xpath("//*[@id='company-edit']/div[5]/div[3]/div/div[3]/div[1]")).click();
-        driver.findElement(By.id("_autoId_58_")).click();
+        driver.findElement(By.id("_autoId_59_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[6]/div[3]/div/div[2]/div[15]")).click(); //break end
         driver.findElement(By.xpath("//*[@id='company-edit']/div[6]/div[3]/div/div[3]/div[1]")).click();
         driver.findElement(By.xpath("//*[@id='timetable-container']/table/tbody/tr[10]/td[2]/div/div/button/span")).click();
         driver.findElement(By.xpath("//*[@id='timetable-container']/table/tbody/tr[10]/td[2]/div/div/div/ul/li[39]/a")).click(); //timezone
-        driver.findElement(By.id("_autoId_75_")).click();
         driver.findElement(By.id("_autoId_76_")).click();
+        driver.findElement(By.id("_autoId_77_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[4]")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a"))).click(); //company information
         wait.until(ExpectedConditions.elementToBeClickable(By.name("company_inn"))).sendKeys(inn);
@@ -852,25 +852,29 @@ public class Test {
         driver.findElement(By.name("phone[0][phone_number]")).sendKeys("89009009090");
         driver.findElement(By.name("phone[0][phone_explanation]")).sendKeys("Диспетчер");
         driver.findElement(By.name("company_address")).sendKeys("улица Пушкина");
-        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='_autoId_19__ifr']"))); //comments
+        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='_autoId_20__ifr']"))); //comments
         driver.findElement(By.xpath("//body[@id='tinymce']/p")).sendKeys("Компания создана автоматически для тестирования");
         driver.switchTo().defaultContent(); //main page
         driver.findElement(By.name("company_site")).sendKeys("https://www.avtovokzaly.ru");
         driver.findElement(By.name("submit")).click();
+        Thread.sleep(600);
+        driver.findElement(By.name("company_account")).sendKeys("09385");
+        driver.findElement(By.name("submit")).click();
+        Thread.sleep(600);
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[2]/a")).click();
         Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='document-list']/dl/dd/ul/li[1]/button"))).click(); //add INN
         calculateNumber ();
         String inn = documentNumber +"000000";
         driver.findElement(By.name("number")).sendKeys(inn); //INN number
-        driver.findElement(By.id("_autoId_7_")).click();
+        driver.findElement(By.xpath("/html/body/div[4]/div/div/form/div[3]/div/button[2]")).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[class='modal-dialog']")));
         driver.findElement(By.xpath("//*[@id='document-list']/dl/dd/ul/li[1]/button")).click(); //add OGRNIP
         calculateNumber ();
         String ogrnip = documentNumber +"000000000";
         driver.findElement(By.name("number")).sendKeys(ogrnip); //OGRNIP number
-        driver.findElement(By.id("_autoId_7_")).click();
+        driver.findElement(By.xpath("/html/body/div[4]/div/div/form/div[3]/div/button[2]")).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[class='modal-dialog']")));
         driver.findElement(By.xpath("//*[@id='document-list']/dl/dd/ul/li[1]/button")).click(); //add Insurance
         calculateNumber ();
@@ -894,51 +898,43 @@ public class Test {
         driver.findElement(By.name("to_date")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[5]/div/table/tbody/tr[6]/td[7]")).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
-        driver.findElement(By.id("_autoId_9_")).sendKeys(conf.filePath); //add file
+        driver.findElement(By.name("file_collection[0][file]")).sendKeys(conf.filePath); //add file
         driver.findElement(By.id("_autoId_10_")).click();
+        Thread.sleep(300);
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[3]/a")).click();
         driver.findElement(By.name("create_timetable")).click();
-        driver.findElement(By.id("_autoId_29_")).click();
-        driver.findElement(By.id("_autoId_34_")).click();
-        driver.findElement(By.id("_autoId_39_")).click();
-        driver.findElement(By.id("_autoId_44_")).click();
-        driver.findElement(By.id("_autoId_49_")).click();
-        driver.findElement(By.id("_autoId_55_")).click();
+        driver.findElement(By.id("_autoId_30_")).click();
+        driver.findElement(By.id("_autoId_35_")).click();
+        driver.findElement(By.id("_autoId_40_")).click();
+        driver.findElement(By.id("_autoId_45_")).click();
+        driver.findElement(By.id("_autoId_50_")).click();
+        driver.findElement(By.id("_autoId_56_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[3]/div[3]/div/div[2]/div[9]")).click(); //work start
         driver.findElement(By.xpath("//*[@id='company-edit']/div[3]/div[3]/div/div[3]/div[1]")).click();
-        driver.findElement(By.id("_autoId_56_")).click();
+        driver.findElement(By.id("_autoId_57_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[4]/div[3]/div/div[2]/div[21]")).click(); //work end
         driver.findElement(By.xpath("//*[@id='company-edit']/div[4]/div[3]/div/div[3]/div[1]")).click();
-        driver.findElement(By.id("_autoId_57_")).click();
+        driver.findElement(By.id("_autoId_58_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[5]/div[3]/div/div[2]/div[14]")).click(); //brake start
         driver.findElement(By.xpath("//*[@id='company-edit']/div[5]/div[3]/div/div[3]/div[1]")).click();
-        driver.findElement(By.id("_autoId_58_")).click();
+        driver.findElement(By.id("_autoId_59_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[6]/div[3]/div/div[2]/div[15]")).click(); //brake end
         driver.findElement(By.xpath("//*[@id='company-edit']/div[6]/div[3]/div/div[3]/div[1]")).click();
         driver.findElement(By.xpath("//*[@id='timetable-container']/table/tbody/tr[10]/td[2]/div/div/button/span")).click();
         driver.findElement(By.xpath("//*[@id='timetable-container']/table/tbody/tr[10]/td[2]/div/div/div/ul/li[39]/a")).click(); //timezone
-        driver.findElement(By.id("_autoId_75_")).click();
         driver.findElement(By.id("_autoId_76_")).click();
+        driver.findElement(By.id("_autoId_77_")).click();
         driver.executeScript("window.scroll(0,-500);"); //scroll down
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[5]")).click();
-        driver.findElement(By.xpath("//*[@id='additionally']/div/div[1]/ul/li[4]")).click();
-        Thread.sleep(600);
-        driver.findElement(By.cssSelector(".add-user-company > td")).click(); //add owner
-        Thread.sleep(600);
-        driver.findElement(By.name("user_id")).sendKeys(conf.carrierLogin); //find owner
-        Thread.sleep(600);
-        driver.findElement(By.cssSelector(".tt-highlight")).click(); //elect owner
-        driver.findElement(By.cssSelector(".modal-footer > #_autoId_3_")).click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900)); //have to change waiting time
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='company-edit']/div[8]/div/form")));
         driver.findElement(By.xpath("//*[@id='additionally']/div/div[1]/ul/li[2]/a")).click(); //go to buses and drivers
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='bus-units-and-drivers']/table[1]/tbody/tr/td/button"))).click();
         driver.findElement(By.name("model")).sendKeys("ПАЗ");
         driver.findElement(By.name("gos_number")).sendKeys("е111ее");
         driver.findElement(By.cssSelector(".modal-footer > #_autoId_3_")).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[class='modal-dialog']")));
         driver.findElement(By.xpath("//*[@id='bus-units-and-drivers']/table[2]/tbody/tr/td/button")).click();
-        driver.findElement(By.name("fio")).sendKeys("Иваныя");
+        driver.findElement(By.name("fio")).sendKeys("Иваныч");
         driver.findElement(By.cssSelector(".modal-footer > #_autoId_2_")).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[class='modal-dialog']")));
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
