@@ -14,7 +14,7 @@ sudo apt-get update && apt-get upgrade
 chromedriver
 
 If there are differences between chrome and chromedriver versions:
-https://chromedriver.storage.googleapis.com/index.html
+https://googlechromelabs.github.io/chrome-for-testing/
 
 Run script:
 driver.sh

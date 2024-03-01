@@ -273,13 +273,17 @@ public class Test {
         String url = driver.getCurrentUrl();
         if (url.contains("checkout.sandbox.gateline.net")) { //GateLine
             driver.findElement(By.name("order_cc_number")).sendKeys(conf.cardGateline); //test card number
-            driver.findElement(By.cssSelector(".exp_month_sel > .selectBox-arrow")).click();
-            driver.findElement(By.xpath("//a[contains(text(),'12')]")).click();
-            driver.findElement(By.cssSelector(".exp_year_sel > .selectBox-arrow")).click();
-            driver.findElement(By.xpath("//a[contains(text(),'2024')]")).click();
-            driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
+            driver.findElement(By.name("order_cc_expire")).sendKeys("1224");
             driver.findElement(By.name("order_cc_cvv")).sendKeys("111");
-            driver.findElement(By.id("ajax_submit")).click();
+            driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
+            driver.findElement(By.cssSelector("button.std-btn")).click();
+            //driver.findElement(By.cssSelector(".exp_month_sel > .selectBox-arrow")).click();
+            //driver.findElement(By.xpath("//a[contains(text(),'12')]")).click();
+            //driver.findElement(By.cssSelector(".exp_year_sel > .selectBox-arrow")).click();
+            //driver.findElement(By.xpath("//a[contains(text(),'2024')]")).click();
+            //driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
+            //driver.findElement(By.name("order_cc_cvv")).sendKeys("111");
+            //driver.findElement(By.id("ajax_submit")).click();
             System.out.println("Info: Gateline payment system was chosen");
         } else { 
             try { //SPB Tinkoff
