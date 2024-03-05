@@ -267,7 +267,7 @@ public class Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
     }
 
-    void paymentSystem() { //payment systems
+    void paymentSystem() throws Exception { //payment systems
         wait.until(ExpectedConditions.not(ExpectedConditions.urlContains("avtovokzaly"))); //waiting for the exit from the avtovokzaly
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1800));
         String url = driver.getCurrentUrl();
@@ -277,15 +277,19 @@ public class Test {
             driver.findElement(By.name("order_cc_cvv")).sendKeys("111");
             driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
             driver.findElement(By.cssSelector("button.std-btn")).click();
-            //driver.findElement(By.cssSelector(".exp_month_sel > .selectBox-arrow")).click();
-            //driver.findElement(By.xpath("//a[contains(text(),'12')]")).click();
-            //driver.findElement(By.cssSelector(".exp_year_sel > .selectBox-arrow")).click();
-            //driver.findElement(By.xpath("//a[contains(text(),'2024')]")).click();
-            //driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
-            //driver.findElement(By.name("order_cc_cvv")).sendKeys("111");
-            //driver.findElement(By.id("ajax_submit")).click();
             System.out.println("Info: Gateline payment system was chosen");
-        } else { 
+        } if (url.contains("sbergate.com")) { //GateLine
+            driver.findElement(By.name("pan")).sendKeys(conf.cardSberpay); //test card number
+            driver.findElement(By.name("expiry")).sendKeys("1224");
+            driver.findElement(By.name("cvc")).sendKeys("123");
+            driver.findElement(By.cssSelector(".styles_solid__1fLFs")).click();
+            driver.findElement(By.name("password")).sendKeys("12345678");
+            System.out.println("Info: SberPay payment system was chosen");
+        } if (url.contains("qr.nspk.ru")) { //GateLine
+            Thread.sleep(60000);
+            System.out.println("Info: SPB Gateline payment system was chosen");
+            driver.navigate().back();
+        } else {
             try { //SPB Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[3]/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
@@ -403,7 +407,7 @@ public class Test {
         try {
             driver.findElement(By.xpath("//*[@id='cart']/div[6]/div[5]/p/span")).click();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Warning: There are no hidden payment systems");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
         List<WebElement> links = driver.findElements(By.cssSelector(".pay-start-row")); //list of payment systems
@@ -500,7 +504,7 @@ public class Test {
         try {
             driver.findElement(By.xpath("//*[@id='content']/div[6]/div[3]/div[1]/div/span")).click();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Warning: There are no hidden payment systems");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
         List<WebElement> links = driver.findElements(By.xpath("//*[@title='Вы будете перенаправлены на сайт платёжной системы']"));
