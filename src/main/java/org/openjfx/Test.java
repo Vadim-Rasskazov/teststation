@@ -551,7 +551,7 @@ public class Test {
         driver.findElement(By.name("reg_name")).sendKeys("Тестовый №"+number); //company name
         driver.findElement(By.name("company_brand_name")).sendKeys("TEST"); //brand
         driver.findElement(By.xpath("//*[@id='company-add']/div/div[3]/form/div[6]/div/div/div/div/label[2]")).click();
-        driver.findElement(By.name("phone[0][phone_number]")).sendKeys("89009009090");
+        driver.findElement(By.name("phone[0][phone_number]")).sendKeys("9009009090");
         driver.findElement(By.name("phone[0][phone_explanation]")).sendKeys("Диспетчер");
         driver.findElement(By.name("company_address")).sendKeys("улица Пушкина");
         driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='_autoId_20__ifr']"))); //comments
@@ -560,7 +560,7 @@ public class Test {
         driver.findElement(By.name("company_site")).sendKeys("https://www.avtovokzaly.ru");
         driver.findElement(By.name("submit")).click();
         Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[2]/a")).click();
+        driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[2]")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='document-list']/dl/dd/ul/li[1]/button"))).click(); //add INN
         calculateNumber ();
         String inn = documentNumber +"000000";
@@ -623,41 +623,44 @@ public class Test {
         driver.findElement(By.id("_autoId_76_")).click();
         driver.findElement(By.id("_autoId_77_")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[4]")).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a"))).click(); //company information
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("company_inn"))).sendKeys(inn);
-        driver.findElement(By.name("company_ogrn")).sendKeys(ogrnip);
-        driver.findElement(By.name("company_bik")).sendKeys("111111111");
-        driver.findElement(By.name("company_bank")).sendKeys("Неальфа");
-        driver.findElement(By.name("company_rs")).sendKeys("40802810229120001111");
-        driver.findElement(By.name("company_ks")).sendKeys("11111111111111111111");
+        Thread.sleep(600);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a"))).click(); //agent contract
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales-requisites']/form/div[2]/div[2]/p"))).click(); //agent contract
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[8]/div/div/div[2]/form/div[2]/div[2]/p"))).click(); //agent contract
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("inn"))).sendKeys(inn);
+        driver.findElement(By.name("ogrn")).sendKeys(ogrnip);
         driver.findElement(By.name("legal_address_index")).sendKeys("170000");
         driver.findElement(By.name("legal_address_text")).sendKeys("улица Пушкина");
         driver.findElement(By.name("post_address_index")).sendKeys("170000");
         driver.findElement(By.name("post_address_text")).sendKeys("улица Пушкина");
         driver.findElement(By.name("post_address_recipient")).sendKeys("Тестировщик");
-        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[18]/div/fieldset/div[1]/div[1]/div/input")).sendKeys("89009009090");
-        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[18]/div/fieldset/div[1]/div[2]/input")).sendKeys("Тестировщик");
-        driver.findElement(By.xpath("//*[@id='sales-requisites']//div[19]/div/button")).click();
+        driver.findElement(By.xpath("//button[contains(text(),'Добавить организацию')]")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("partner_delegate_fio"))).sendKeys("Тестировщик Т.Т.");
+        driver.findElement(By.name("partner_delegate_position")).sendKeys("тестировщик");
+        driver.findElement(By.name("bank_account[bank]")).sendKeys("Неальфа");
+        driver.findElement(By.name("bank_account[bik]")).sendKeys("111111111");
+        driver.findElement(By.name("bank_account[rs]")).sendKeys("40802810229120001111");
+        driver.findElement(By.name("bank_account[ks]")).sendKeys("11111111111111111111");
+        driver.findElement(By.cssSelector("#_autoId_18_.form-control")).sendKeys("9009009090");
+        driver.findElement(By.cssSelector("#_autoId_20_.btn-primary.btn")).click();
+        Thread.sleep(600);
+        driver.findElement(By.cssSelector("#_autoId_3_.btn-primary.btn")).click();
         Thread.sleep(1500);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[3]/a"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Правила возврата')]"))).click();//return rules
         Thread.sleep(600);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales-refund']/form/div[2]/div/div/label[2]"))).click(); //return rules
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".form-group > #_autoId_44_"))).click();
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/div/div[1]/ul/li[1]/a")).click();
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='common']/div/ul/li[4]/button")).click(); //request to start selling
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[3]/div/div[1]/div[4]/div/div[2]/div/div[3]/form/div[2]/div/div/label[2]"))).click();
+        driver.findElement(By.cssSelector("#_autoId_14_.btn-primary.btn")).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[5]/a")).click();
         driver.findElement(By.xpath("//*[@id='bus-units-and-drivers']/table[1]/tbody/tr/td/button")).click();
         driver.findElement(By.name("model")).sendKeys("ПАЗ");
         driver.findElement(By.name("gos_number")).sendKeys("е111ее");
-        driver.findElement(By.cssSelector(".modal-footer > #_autoId_3_")).click();
+        driver.findElement(By.cssSelector("#_autoId_3_.btn-primary.btn")).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[class='modal-dialog']")));
         driver.findElement(By.xpath("//*[@id='bus-units-and-drivers']/table[2]/tbody/tr/td/button")).click();
         driver.findElement(By.name("fio")).sendKeys("Иваныч");
-        driver.findElement(By.cssSelector(".modal-footer > #_autoId_2_")).click();
+        driver.findElement(By.cssSelector("#_autoId_2_.btn-primary.btn")).click();
         testEnd();
     }
 
