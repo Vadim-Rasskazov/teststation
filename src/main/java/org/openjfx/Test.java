@@ -20,6 +20,7 @@ public class Test {
     ChromeDriver driver;
     WebDriverWait wait;
     Long documentNumber;
+    String contractId;
     Boolean elementExist;
     String mobileScript = "arguments[0].setAttribute('href', '"+conf.urlMobile+"')";
 
@@ -315,6 +316,23 @@ public class Test {
         long leftEdge = 100000L;
         long rightEdge = 999999L;
         documentNumber = leftEdge + (long) (Math.random() * (rightEdge - leftEdge));
+    }
+
+    void activateContract () throws Exception {
+        Thread.sleep(600);
+        String contractUrl = driver.getCurrentUrl();
+        int start = contractUrl.indexOf("id-");
+        contractId = contractUrl.substring(start + 3);
+        Thread.sleep(600);
+        driver.get(conf.urlContracts);
+        Thread.sleep(600);
+        driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[7]/button")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tr[@data-contract="+contractId+"]/td[8]/button"))).click();
+        Thread.sleep(600);
+        driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[8]/button[2]")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tr[@data-contract="+contractId+"]/td[9]/button"))).click();
+        Thread.sleep(600);
+        driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[10]/a")).click();
     }
 
     void testStart() { //start of each test
@@ -625,9 +643,11 @@ public class Test {
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div[2]/ul/li[4]")).click();
         Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a"))).click(); //agent contract
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales-requisites']/form/div[2]/div[2]/p"))).click(); //agent contract
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[8]/div/div/div[2]/form/div[2]/div[2]/p"))).click(); //agent contract
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales-requisites']/form/div[2]/div[2]/p"))).click(); //create contract
+        Thread.sleep(600);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[8]/div/div/div[2]/form/div[2]/div[2]/p"))).click(); //create organization
         wait.until(ExpectedConditions.elementToBeClickable(By.name("inn"))).sendKeys(inn);
+        Thread.sleep(600);
         driver.findElement(By.name("ogrn")).sendKeys(ogrnip);
         driver.findElement(By.name("legal_address_index")).sendKeys("170000");
         driver.findElement(By.name("legal_address_text")).sendKeys("улица Пушкина");
@@ -744,11 +764,10 @@ public class Test {
         driver.findElement(By.name("password")).sendKeys(conf.adminPassword);
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.xpath("//*[@id='index-index']/div[1]/div[1]/nav/ul/li[1]/a")).click();
-        driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/div[1]/div[5]/div[1]/div/label[2]")).click(); //find company without permissions
         driver.findElement(By.name("name")).sendKeys("ИП Тестовый", Keys.ENTER); //set name, push Enter
-        driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/div[1]/div[6]/div/div/label[2]")).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[10]/a/span"))).click();
-        driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[2]/a")).click(); //go to admit documents
+        driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a")).click();
+        Thread.sleep(600);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Документы и разрешения')]"))).click(); //go to admit documents
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bg-info:nth-child(2) .btn-success"))).click(); //admit first document
         Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bg-info:nth-child(3) .btn-success"))).click(); //admit second document
@@ -771,19 +790,26 @@ public class Test {
         driver.findElement(By.name("suburban[date_end]")).click(); //end date permission
         driver.findElement(By.xpath("//*[@id='company-edit']/div[5]/div[1]/table/tbody/tr[6]/td[7]")).click(); //last date
         driver.findElement(By.cssSelector(".modal-footer > #_autoId_15_")).click();
-        driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a")).click();
+        driver.findElement(By.xpath("//span[contains(text(),'Агентский договор №')]")).click();
         Thread.sleep(600);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("agency_contract_delegate_fio"))).sendKeys("Тестировщик Т.Т.");
-        driver.findElement(By.name("agency_contract_start_date")).click(); //start date
-        driver.findElement(By.xpath("//*[@id='company-edit']/div[3]/div[1]/table/tbody/tr[1]/td[1]")).click(); //fist date
-        driver.findElement(By.id("_autoId_9_")).click();
-        driver.findElement(By.name("agency_contract_1c_code")).sendKeys("11111"); //1s
-        driver.findElement(By.id("_autoId_11_")).click();
-        driver.findElement(By.cssSelector(".alert > .btn-success")).click(); //on sales
-        driver.findElement(By.id("_tmpIdagreement")).click();
-        driver.findElement(By.cssSelector(".btn-warning")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='info']/form/div[14]/div/div/button"))).click(); //contract`s status
+        driver.findElement(By.xpath("//*[@id='info']/form/div[14]/div/div/div/ul/li[3]")).click(); //contract`s status
+        driver.findElement(By.id("_autoId_30_")).sendKeys("11111"); //1s
+        driver.findElement(By.id("_autoId_31_")).click();
+        activateContract();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Перевозчики по договору')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Включить продажи')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]"))).click();
         Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/a[3]")).click(); //all company routes
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Включить продажи от имени перевозчика')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("_tmpIdagreement"))).click();
+        //driver.findElement(By.xpath("//button[contains(text(),'Включить')]")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]"))).click();
+        Thread.sleep(600);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/span"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/div/a"))).click();
         driver.findElement(By.cssSelector(".btn-info")).click(); //edit first route
         driver.findElement(By.xpath("//*[@id='route-edit']/div[1]/div[3]/div[1]/ul/li[5]/a")).click(); //sales
         Thread.sleep(600);
@@ -807,9 +833,8 @@ public class Test {
         driver.findElement(By.name("password")).sendKeys(conf.adminPassword);
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.xpath("//*[@id='index-index']/div[1]/div[1]/nav/ul/li[1]/a")).click();
-        driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/div[1]/div[5]/div[1]/div/label[3]")).click(); //find company with permissions
         driver.findElement(By.name("name")).sendKeys("ИП Тестовый", Keys.ENTER); //set name, push Enter
-        driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[9]/a")).click();
+        driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a")).click();
         Thread.sleep(600);
         driver.findElement(By.cssSelector(".sale-application-reject")).click(); //refuse sale permission
