@@ -801,11 +801,10 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Включить продажи')]"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]"))).click();
+        driver.findElement(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]")).click();
         Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Включить продажи от имени перевозчика')]"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("_tmpIdagreement"))).click();
-        //driver.findElement(By.xpath("//button[contains(text(),'Включить')]")).click();
+        driver.findElement(By.id("_tmpIdagreement")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]"))).click();
         Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/span"))).click();
@@ -837,16 +836,19 @@ public class Test {
         driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a")).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a")).click();
         Thread.sleep(600);
-        driver.findElement(By.cssSelector(".sale-application-reject")).click(); //refuse sale permission
-        driver.findElement(By.name("action-comment")).sendKeys("Тест");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Отключить продажи от имени перевозчика')]"))).click();
         driver.findElement(By.cssSelector(".btn-warning")).click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900));
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[class='modal-dialog']")));
-        driver.findElement(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[2]/a")).click();
+        Thread.sleep(600);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Отключить продажи')]"))).click();
+        driver.findElement(By.id("_tmpIdreason")).sendKeys("Тест");
+        driver.findElement(By.cssSelector(".btn-warning")).click();
+        Thread.sleep(600);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Документы и разрешения')]"))).click();
         Thread.sleep(600);
         driver.findElement(By.cssSelector(".bg-success:nth-child(2) .btn-danger > .glyphicon")).click(); //refuse first document
         driver.findElement(By.cssSelector(".form-group > #_autoId_1_")).sendKeys("Тест");
         driver.findElement(By.cssSelector(".form-group > #_autoId_2_")).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[class='modal-dialog']")));
         driver.findElement(By.cssSelector(".bg-success:nth-child(2) .btn-danger > .glyphicon")).click(); //refuse second document
         driver.findElement(By.cssSelector(".form-group > #_autoId_1_")).sendKeys("Тест");
