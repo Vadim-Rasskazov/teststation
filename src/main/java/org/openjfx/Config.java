@@ -20,6 +20,5 @@ public class Config { //Example config, rename and fill
     String dbUserName = "xxxxx";
     String dbAddress = "jdbc:mysql://xxxxx";
     String dbPassword = "xxxxx";
-    String experimentalBotUrl = "https://mm.xxxxx";
     String experimentalTestUrl = "https://mm.xxxxx";
 }

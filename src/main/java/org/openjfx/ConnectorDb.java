@@ -12,7 +12,7 @@ public class ConnectorDb {
             Connection con = DriverManager.getConnection(conf.dbAddress,conf.dbUserName,conf.dbPassword);
             statement = con.createStatement();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Failed to connect to the database");
         }
     }
 }

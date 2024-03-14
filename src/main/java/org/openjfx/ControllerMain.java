@@ -310,7 +310,7 @@ public class ControllerMain {
 
         buttonTestExperimental.setOnAction(event -> {
             try {
-                exTest.experimentBot();
+                exTest.experimentTest();
                 checkTestExperimental.setFill(Paint.valueOf("#00ff00cc"));
             } catch (Exception e) {
                 e.printStackTrace(System.out);

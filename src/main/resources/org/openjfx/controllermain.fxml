@@ -108,7 +108,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestCreateAll" alignment="CENTER" layoutX="20.0" layoutY="678.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Creating by admin" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="720.0">
+      <Button fx:id="buttonTestCreateAll" alignment="CENTER" layoutX="20.0" layoutY="678.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Creation by admin" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="720.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -177,9 +177,7 @@
       <Circle fx:id="checkTestCreateAll" disable="true" fill="#293239" layoutX="466.0" layoutY="745.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="730.0" />
       <Circle fx:id="checkTestExperimental" disable="true" fill="#293239" layoutX="472.0" layoutY="860.0" radius="15.0" stroke="#f07732" strokeType="INSIDE" strokeWidth="2.0" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="830.0" />
       <ImageView fx:id="imageLogo" cache="true" fitHeight="200.0" fitWidth="200.0" layoutX="156.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" style="visibility: true;" visible="false">
-         <image>
-            <Image url="@logo.png" />
-         </image>
+         <Image url="@logo.png" />
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>

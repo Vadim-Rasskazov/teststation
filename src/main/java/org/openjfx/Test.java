@@ -86,7 +86,6 @@ public class Test {
                 try {
                     driver.findElement(By.xpath("//*[@id='booking']/div/div/fieldset[3]/label/span")).click(); //tariff without place
                 } catch (Exception ex) {
-                    ex.printStackTrace();
                     System.out.println("Warning: Free ticket can`t be chosen");
                 }
             }
@@ -210,7 +209,6 @@ public class Test {
             try {
                 driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[3]/div/div/div/label/span[1]/span")).click(); //tariff without place
             } catch (Exception ex) {
-                ex.printStackTrace();
                 System.out.println("Warning: Free ticket can`t be chosen");
             }
         }
@@ -290,7 +288,8 @@ public class Test {
             Thread.sleep(60000);
             System.out.println("Info: SPB Gateline payment system was chosen");
             driver.navigate().back();
-        } else {
+        } if (url.contains("securepayments.tinkoff.ru")) {
+            Thread.sleep(1500);
             try { //SPB Tinkoff
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[3]/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
                 driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
@@ -449,7 +448,7 @@ public class Test {
         driver.findElement(By.name("reason")).click();
         driver.findElement(By.xpath("//option[contains(text(),'Отмена поездки')]")).click();
         List<WebElement> elementList = driver.findElements(By.cssSelector(".checkbox"));
-        elementList.get(elementList.size() - 1).click();
+        elementList.getLast().click();
         driver.findElement(By.cssSelector("[data-original-label='Вернуть билеты']")).click();
         Thread.sleep(1500);
         driver.findElement(By.id("navCustomerArea")).click();
