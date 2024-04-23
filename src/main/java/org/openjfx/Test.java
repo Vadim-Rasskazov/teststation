@@ -277,14 +277,23 @@ public class Test {
             driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
             driver.findElement(By.cssSelector("button.std-btn")).click();
             System.out.println("Info: Gateline payment system was chosen");
-        } if (url.contains("sbergate.com")) { //GateLine
+        } if (url.contains("sbergate.com")) { //SberPay
             driver.findElement(By.name("pan")).sendKeys(conf.cardSberpay); //test card number
             driver.findElement(By.name("expiry")).sendKeys("1224");
             driver.findElement(By.name("cvc")).sendKeys("123");
             driver.findElement(By.cssSelector(".styles_solid__1fLFs")).click();
             driver.findElement(By.name("password")).sendKeys("12345678");
             System.out.println("Info: SberPay payment system was chosen");
-        } if (url.contains("qr.nspk.ru")) { //GateLine
+        } if (url.contains("mts.rbsuat.com")) { //Mts
+            driver.findElement(By.xpath("//button[contains(text(),'Оплатить картой')]")).click();
+            driver.findElement(By.xpath("//div[2][contains(text(),'Получить чек на e-mail')]")).click();
+            driver.findElement(By.name("pan")).sendKeys(conf.cardMts); //test card number
+            driver.findElement(By.name("expiry")).sendKeys("1224");
+            driver.findElement(By.name("cvc")).sendKeys("123");
+            driver.findElement(By.xpath("//button[contains(text(),'Оплатить картой')]")).click();
+            driver.findElement(By.name("password")).sendKeys("12345678");
+            System.out.println("Info: Mts payment system was chosen");
+        } if (url.contains("qr.nspk.ru")) { //GateLine SBP
             Thread.sleep(60000);
             System.out.println("Info: SPB Gateline payment system was chosen");
             driver.navigate().back();
@@ -329,7 +338,8 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tr[@data-contract="+contractId+"]/td[8]/button"))).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[8]/button[2]")).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tr[@data-contract="+contractId+"]/td[9]/button"))).click();
+        Thread.sleep(600);
+        driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[9]/button")).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[10]/a")).click();
     }

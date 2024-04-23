@@ -17,6 +17,7 @@ public class Config { //Example config, rename and fill
     String cardTinkoff = "xxxxx";
     String cardGateline = "xxxxx";
     String cardSberpay = "xxxxx";
+    String cardMts = "xxxxx";
     String dbUserName = "xxxxx";
     String dbAddress = "jdbc:mysql://xxxxx";
     String dbPassword = "xxxxx";
