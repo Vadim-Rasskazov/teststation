@@ -147,6 +147,7 @@ public class ControllerData {
         try {
             connectorDb.setCon();
         } catch (Exception e) {
+
             e.printStackTrace(System.out);
         }
 
