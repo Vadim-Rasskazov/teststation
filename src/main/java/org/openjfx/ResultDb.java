@@ -6,72 +6,28 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ResultDb {
-    private final IntegerProperty id;
-    private final StringProperty name;
-    private final StringProperty result;
-    private final StringProperty time;
-    private final StringProperty date;
-    private final StringProperty user;
-    private final StringProperty version;
     private final IntegerProperty number;
+    private final StringProperty date;
+    private final StringProperty result;
+    private final StringProperty log;
 
-    ResultDb(int id, String name, String result, String time, String date, String user, String version, int number) {
-        this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.result = new SimpleStringProperty(result);
-        this.time = new SimpleStringProperty(time);
-        this.date = new SimpleStringProperty(date);
-        this.user = new SimpleStringProperty(user);
-        this.version = new SimpleStringProperty(version);
+    ResultDb(int number, String date, String result, String log) {
         this.number = new SimpleIntegerProperty(number);
+        this.date = new SimpleStringProperty(date);
+        this.result = new SimpleStringProperty(result);
+        this.log = new SimpleStringProperty(log);
     }
 
-    public int getId() {
-        return id.get();
+    public int getNumber() {
+        return number.get();
     }
 
-    public IntegerProperty idProperty() {
-        return id;
+    public IntegerProperty numberProperty() {
+        return number;
     }
 
-    public void setId(int id) {
-        this.id.set(id);
-    }
-
-    public String getName() {
-        return name.get();
-    }
-
-    public StringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
-    }
-
-    public String getResult() {
-        return result.get();
-    }
-
-    public StringProperty resultProperty() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result.set(result);
-    }
-
-    public String getTime() {
-        return time.get();
-    }
-
-    public StringProperty timeProperty() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time.set(time);
+    public void setNumber(int number) {
+        this.number.set(number);
     }
 
     public String getDate() {
@@ -86,40 +42,30 @@ public class ResultDb {
         this.date.set(date);
     }
 
-    public String getUser() {
-        return user.get();
+    public String getResult() {
+        return result.get();
     }
 
-    public StringProperty userProperty() {
-        return user;
+    public StringProperty resultProperty() {
+        return result;
     }
 
-    public void setUser(String user) {
-        this.user.set(user);
+    public void setResult(String result) {
+        this.result.set(result);
     }
 
-    public String getVersion() {
-        return version.get();
+    public String getLog() {
+        return log.get();
     }
 
-    public StringProperty versionProperty() {
-        return version;
+    public StringProperty logProperty() {
+        return log;
     }
 
-    public void setVersion(String version) {
-        this.version.set(version);
+    public void setLog(String log) {
+        this.log.set(log);
     }
 
-    public int getNumber() {
-        return number.get();
-    }
 
-    public IntegerProperty numberProperty() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number.set(number);
-    }
 
 }
