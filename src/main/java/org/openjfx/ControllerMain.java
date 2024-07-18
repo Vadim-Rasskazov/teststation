@@ -125,16 +125,20 @@ public class ControllerMain {
 
     String from = "Тверь";
     String to = "Новосокольники";
-    
+
     @FXML
     public void initialize() {
         Stage dataStage = new Stage();
         Test test = new Test();
         ExperimentalTest exTest = new ExperimentalTest();
+
         MonitorSize size = new MonitorSize();
         windowMain.setPrefSize((double) size.width / 5, size.height);
         imageLogo.setLayoutX((double) size.width / 10 -100);
         imageLogo.setLayoutY((double) size.height / 2 - 200);
+
+        ResultToDb insertResult = new ResultToDb();
+        String date = new CurrentDate().today;
 
         buttonTestsOn.setOnAction(event -> {
             buttonTestsOff.setVisible(true);
@@ -188,7 +192,6 @@ public class ControllerMain {
             }
         });
 
-
         buttonTestSettingsOn.setOnAction(event -> {
             buttonTestSettingsOff.setVisible(true);
             buttonTestSettingsOn.setVisible(false);
@@ -219,92 +222,155 @@ public class ControllerMain {
         });
 
         buttonTestMBook.setOnAction(event -> {
+            String name = "Mobile booking";
             try {
                 test.bookingMobile(from, to);
                 checkTestMBook.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestMBook.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestMBuy.setOnAction(event -> {
+            String name = "Mobile buying";
             try {
                 test.buyingMobile(from, to);
                 checkTestMBuy.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestMBuy.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestDBook.setOnAction(event -> {
+            String name = "Desktop booking";
             try {
                 test.bookingDesktop(from, to);
                 checkTestDBook.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestDBook.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestDBuy.setOnAction(event -> {
+            String name = "Desktop buying";
             try {
                 test.buyingDesktop(from, to);
                 checkTestDBuy.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestDBuy.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestCreateCom.setOnAction(event -> {
+            String name = "Create company";
             try {
                 test.createCompany();
                 checkTestCreateCom.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestCreateCom.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestCreateRoute.setOnAction(event -> {
+            String name = "Create route";
             try {
                 test.createRoute();
                 checkTestCreateRoute.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestCreateRoute.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestSelect.setOnAction(event -> {
+            String name = "Sales activation";
             try {
                 test.salesActivation();
                 checkTestSelect.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestSelect.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestDeleteCom.setOnAction(event -> {
+            String name = "Delete company";
             try {
                 test.deleteCompany();
                 checkTestDeleteCom.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestDeleteCom.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 
         buttonTestCreateAll.setOnAction(event -> {
+            String name = "Creation by admin";
             try {
                 test.createAll();
                 checkTestCreateAll.setFill(Paint.valueOf("#00ff00cc"));
+                String result = "successful";
+                String log = "";
+                insertResult.insertToDb(date, name, result, log);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 checkTestCreateAll.setFill(Paint.valueOf("#ff0000cc"));
+                String result = "unsuccessful";
+                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
+                insertResult.insertToDb(date, name, result, log);
             }
         });
 

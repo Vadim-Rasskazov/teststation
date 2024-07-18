@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS teststation.test_result;
 CREATE TABLE teststation.test_result (
     id int unsigned NOT NULL AUTO_INCREMENT,
+    name VARCHAR(64) NOT NULL COMMENT 'Test name',
     date date NOT NULL COMMENT 'Date of a test',
     result ENUM ('successful', 'unsuccessful') NOT NULL DEFAULT 'unsuccessful' COMMENT 'Result of a test',
     log text DEFAULT NULL COMMENT 'Complete log of an error',

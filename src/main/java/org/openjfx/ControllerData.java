@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -20,34 +19,35 @@ public class ControllerData {
     private URL location;
 
     @FXML
-    private TableView<ResultDb> tableResults;
+    private TableView<ResultFromDb> tableResults;
 
     @FXML
-    private TableColumn<ResultDb, Integer> tableResultsNumber;
+    private TableColumn<ResultFromDb, Integer> tableResultsNumber;
 
     @FXML
-    private TableColumn<ResultDb, String> tableResultsDate;
+    private TableColumn<ResultFromDb, String> tableResultsDate;
 
     @FXML
-    private TableColumn<ResultDb, String> tableResultsResult;
+    private TableColumn<ResultFromDb, String> tableResultsName;
 
     @FXML
-    private TableColumn<ResultDb, String> tableResultsLog;
+    private TableColumn<ResultFromDb, String> tableResultsResult;
+
+    @FXML
+    private TableColumn<ResultFromDb, String> tableResultsLog;
 
     @FXML
     private AnchorPane windowData;
 
-    private final ObservableList<ResultDb> resultList = FXCollections.observableArrayList();
+    private final ObservableList<ResultFromDb> resultList = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
 
-        StatementsDb statementsDb = new StatementsDb();
         ConnectorDb connectorDb = new ConnectorDb(); //new object dbConnector
         try {
             connectorDb.setCon();
         } catch (Exception e) {
-
             e.printStackTrace(System.out);
         }
 
@@ -56,13 +56,13 @@ public class ControllerData {
         tableResultsLog.setPrefWidth((double) size.width / 5 * 4 - 182);
 
         try {
-            ResultSet rs = connectorDb.statement.executeQuery(statementsDb.result);
+            ResultSet rs = connectorDb.statement.executeQuery("SELECT * FROM test_result");
             while (rs.next()) {
-                resultList.add(new ResultDb(rs.getInt("number"), rs.getString("date"), rs.getString("result"),
-                        rs.getString("log")));
+                resultList.add(new ResultFromDb(rs.getInt("id"), rs.getString("date"), rs.getString("name"), rs.getString("result"), rs.getString("log")));
             }
-            tableResultsNumber.setCellValueFactory(cell -> cell.getValue().numberProperty().asObject());
+            tableResultsNumber.setCellValueFactory(cell -> cell.getValue().idProperty().asObject());
             tableResultsDate.setCellValueFactory(cell-> cell.getValue().dateProperty());
+            tableResultsName.setCellValueFactory(cell-> cell.getValue().nameProperty());
             tableResultsResult.setCellValueFactory(cell-> cell.getValue().resultProperty());
             tableResultsLog.setCellValueFactory(cell-> cell.getValue().logProperty());
             tableResults.setItems(resultList);
