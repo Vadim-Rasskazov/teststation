@@ -7,10 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class ResultFromDb {
     private final IntegerProperty id;
-    private final StringProperty date;
-    private final StringProperty name;
-    private final StringProperty result;
-    private final StringProperty log;
+    private final StringProperty date, name, result, log;
 
     ResultFromDb(int id, String date, String name, String result, String log) {
         this.id = new SimpleIntegerProperty(id);

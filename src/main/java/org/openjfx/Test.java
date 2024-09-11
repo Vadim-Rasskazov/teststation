@@ -287,12 +287,19 @@ public class Test {
         } if (url.contains("mts.rbsuat.com")) { //Mts
             driver.findElement(By.xpath("//button[contains(text(),'Оплатить картой')]")).click();
             driver.findElement(By.xpath("//div[2][contains(text(),'Получить чек на e-mail')]")).click();
-            driver.findElement(By.name("pan")).sendKeys(conf.cardMts); //test card number
+            driver.findElement(By.name("pan")).sendKeys(conf.cardRbs); //test card number
             driver.findElement(By.name("expiry")).sendKeys("1224");
             driver.findElement(By.name("cvc")).sendKeys("123");
             driver.findElement(By.xpath("//button[contains(text(),'Оплатить картой')]")).click();
             driver.findElement(By.name("password")).sendKeys("12345678");
             System.out.println("Info: Mts payment system was chosen");
+        } if (url.contains("gpb.rbsuat.com")) { //Gazprombank
+            driver.findElement(By.name("cardnumber")).sendKeys(conf.cardRbs); //test card number
+            driver.findElement(By.name("expdate")).sendKeys("1224");
+            driver.findElement(By.name("cvc")).sendKeys("123");
+            driver.findElement(By.xpath("//span[contains(text(),'Оплатить')]")).click();
+            driver.findElement(By.name("password")).sendKeys("12345678");
+            System.out.println("Info: Gazprombank payment system was chosen");
         } if (url.contains("qr.nspk.ru")) { //GateLine SBP
             Thread.sleep(60000);
             System.out.println("Info: SPB Gateline payment system was chosen");
