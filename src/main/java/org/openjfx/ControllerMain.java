@@ -1,8 +1,6 @@
 package org.openjfx;
 
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,101 +16,30 @@ import javafx.stage.Stage;
 
 public class ControllerMain {
 
-    @FXML
-    private ResourceBundle resources;
 
     @FXML
-    private URL location;
+    private Button buttonDataOff, buttonDataOn, buttonExit;
 
     @FXML
-    private Button buttonDataOff;
+    private Button buttonTestCreateAll, buttonTestCreateCom, buttonTestCreateRoute, buttonTestDeleteCom, buttonTestSelect;
 
     @FXML
-    private Button buttonDataOn;
+    private Button buttonTestDBook, buttonTestDBuy, buttonTestMBook, buttonTestMBuy, buttonTestExperimental;
 
     @FXML
-    private Button buttonExit;
+    private Button buttonTestSettingsApply, buttonTestSettingsOff, buttonTestSettingsOn;
 
     @FXML
-    private Button buttonTestCreateAll;
+    private Button buttonTestsOff, buttonTestsOn;
 
     @FXML
-    private Button buttonTestCreateCom;
+    private Circle checkTestCreateAll, checkTestCreateCom, checkTestCreateRoute, checkTestDeleteCom, checkTestSelect;
 
     @FXML
-    private Button buttonTestCreateRoute;
+    private Circle checkTestDBook, checkTestDBuy, checkTestMBook, checkTestMBuy, checkTestExperimental;
 
     @FXML
-    private Button buttonTestDBook;
-
-    @FXML
-    private Button buttonTestDBuy;
-
-    @FXML
-    private Button buttonTestDeleteCom;
-
-    @FXML
-    private Button buttonTestExperimental;
-
-    @FXML
-    private Button buttonTestMBook;
-
-    @FXML
-    private Button buttonTestMBuy;
-
-    @FXML
-    private Button buttonTestSelect;
-
-    @FXML
-    private Button buttonTestSettingsApply;
-
-    @FXML
-    private Button buttonTestSettingsOff;
-
-    @FXML
-    private Button buttonTestSettingsOn;
-
-    @FXML
-    private Button buttonTestsOff;
-
-    @FXML
-    private Button buttonTestsOn;
-
-    @FXML
-    private Circle checkTestCreateAll;
-
-    @FXML
-    private Circle checkTestCreateCom;
-
-    @FXML
-    private Circle checkTestCreateRoute;
-
-    @FXML
-    private Circle checkTestDBook;
-
-    @FXML
-    private Circle checkTestDBuy;
-
-    @FXML
-    private Circle checkTestDeleteCom;
-
-    @FXML
-    private Circle checkTestExperimental;
-
-    @FXML
-    private Circle checkTestMBook;
-
-    @FXML
-    private Circle checkTestMBuy;
-
-    @FXML
-    private Circle checkTestSelect;
-
-    @FXML
-    private TextField fieldTestSettingsFrom;
-
-    @FXML
-    private TextField fieldTestSettingsTo;
+    private TextField fieldTestSettingsFrom, fieldTestSettingsTo;
 
     @FXML
     private ImageView imageLogo;
@@ -122,6 +49,9 @@ public class ControllerMain {
 
     @FXML
     private Pane windowTestSettings;
+
+    ResultToDb insertResult = new ResultToDb();
+    String date = new CurrentDate().today;
 
     String from = "Тверь";
     String to = "Новосокольники";
@@ -136,9 +66,6 @@ public class ControllerMain {
         windowMain.setPrefSize((double) size.width / 5, size.height);
         imageLogo.setLayoutX((double) size.width / 10 -100);
         imageLogo.setLayoutY((double) size.height / 2 - 200);
-
-        ResultToDb insertResult = new ResultToDb();
-        String date = new CurrentDate().today;
 
         buttonTestsOn.setOnAction(event -> {
             buttonTestsOff.setVisible(true);
@@ -223,154 +150,100 @@ public class ControllerMain {
 
         buttonTestMBook.setOnAction(event -> {
             String name = "Mobile booking";
+            Circle check = checkTestMBook;
             try {
                 test.bookingMobile(from, to);
-                checkTestMBook.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestMBook.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestMBuy.setOnAction(event -> {
             String name = "Mobile buying";
+            Circle check = checkTestMBuy;
             try {
                 test.buyingMobile(from, to);
-                checkTestMBuy.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestMBuy.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestDBook.setOnAction(event -> {
             String name = "Desktop booking";
+            Circle check = checkTestDBook;
             try {
                 test.bookingDesktop(from, to);
-                checkTestDBook.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestDBook.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestDBuy.setOnAction(event -> {
             String name = "Desktop buying";
+            Circle check = checkTestDBuy;
             try {
                 test.buyingDesktop(from, to);
-                checkTestDBuy.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestDBuy.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestCreateCom.setOnAction(event -> {
             String name = "Create company";
+            Circle check = checkTestCreateCom;
             try {
                 test.createCompany();
-                checkTestCreateCom.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestCreateCom.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestCreateRoute.setOnAction(event -> {
             String name = "Create route";
+            Circle check = checkTestCreateRoute;
             try {
                 test.createRoute();
-                checkTestCreateRoute.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestCreateRoute.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestSelect.setOnAction(event -> {
             String name = "Sales activation";
+            Circle check = checkTestSelect;
             try {
                 test.salesActivation();
-                checkTestSelect.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestSelect.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestDeleteCom.setOnAction(event -> {
             String name = "Delete company";
+            Circle check = checkTestDeleteCom;
             try {
                 test.deleteCompany();
-                checkTestDeleteCom.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestDeleteCom.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
         buttonTestCreateAll.setOnAction(event -> {
             String name = "Creation by admin";
+            Circle check = checkTestCreateAll;
             try {
                 test.createAll();
-                checkTestCreateAll.setFill(Paint.valueOf("#00ff00cc"));
-                String result = "successful";
-                String log = "";
-                insertResult.insertToDb(date, name, result, log);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                checkTestCreateAll.setFill(Paint.valueOf("#ff0000cc"));
-                String result = "unsuccessful";
-                String log = e.toString().length() > 1000 ? e.toString().substring(0, 1000) : e.toString();
-                insertResult.insertToDb(date, name, result, log);
+                successfulResult(check, name);
+            } catch (Exception resultException) {
+                unsuccessfulResult(check, name, resultException.toString());
             }
         });
 
@@ -378,12 +251,26 @@ public class ControllerMain {
             try {
                 exTest.experimentTest();
                 checkTestExperimental.setFill(Paint.valueOf("#00ff00cc"));
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
+            } catch (Exception resultException) {
                 checkTestExperimental.setFill(Paint.valueOf("#ff0000cc"));
             }
         });
 
         buttonExit.setOnAction(event -> System.exit(0));
+    }
+
+    private void successfulResult(Circle check, String name) {
+        check.setFill(Paint.valueOf("#00ff00cc"));
+        String result = "successful";
+        String log = "";
+        insertResult.insertToDb(date, name, result, log);
+    }
+
+    private void unsuccessfulResult(Circle check,String name, String resultException) {
+        System.out.println(resultException);
+        check.setFill(Paint.valueOf("#ff0000cc"));
+        String result = "unsuccessful";
+        String log = resultException.length() > 1000 ? resultException.substring(0, 1000) : resultException;
+        insertResult.insertToDb(date, name, result, log);
     }
 }

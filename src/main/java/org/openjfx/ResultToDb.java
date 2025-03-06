@@ -1,14 +1,12 @@
 package org.openjfx;
 
-import java.sql.SQLException;
-
 public class ResultToDb {
 
     ConnectorDb connectorDb = new ConnectorDb(); //new object dbConnector
 
     public void insertToDb(String date, String name, String result, String log) {
         try {
-            connectorDb.setCon();;
+            connectorDb.setCon();
             connectorDb.insert.setString(1, date);
             connectorDb.insert.setString(2, name);
             connectorDb.insert.setString(3, result);

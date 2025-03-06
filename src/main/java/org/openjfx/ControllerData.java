@@ -1,8 +1,6 @@
 package org.openjfx;
 
-import java.net.URL;
 import java.sql.ResultSet;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,12 +9,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
 public class ControllerData {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TableView<ResultFromDb> tableResults;
@@ -44,12 +36,8 @@ public class ControllerData {
     @FXML
     void initialize() {
 
-        ConnectorDb connectorDb = new ConnectorDb(); //new object dbConnector
-        try {
-            connectorDb.setCon();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
+        ConnectorDb connectorDb = new ConnectorDb();
+        connectorDb.setCon();
 
         MonitorSize size = new MonitorSize();
         windowData.setPrefSize((double) size.width / 5 * 4, size.height);

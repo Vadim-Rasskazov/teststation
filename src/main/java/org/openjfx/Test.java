@@ -175,7 +175,7 @@ public class Test {
         driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[1]/div[3]/input")).sendKeys("Иванович");
         driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[2]/div[1]/div/div[1]/input")).sendKeys("01");
         driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[2]/div[1]/div/div[2]/div/select/option[2]")).click();
-        driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[2]/div[1]/div/div[3]/input")).sendKeys("2020");
+        driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[2]/div[1]/div/div[3]/input")).sendKeys("2024");
         driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div/div[2]/div[2]/div/select/option[2]")).click();
         driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[2]/div[3]/div/select/option[3]")).click();
         driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[2]/div[4]/input")).sendKeys("IV-БЮ 123456");
@@ -307,19 +307,19 @@ public class Test {
         } if (url.contains("securepayments.tinkoff.ru")) {
             Thread.sleep(1500);
             try { //SPB Tinkoff
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[3]/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[4]/button")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[3]/label/input")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/label/input")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[2]/label/input")).sendKeys("1224");
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[3]/label/input")).sendKeys("111");
+                driver.findElement(By.xpath("//eacq-index-page/eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[4]/button")).click();
                 System.out.println("Info: SPB Tinkoff payment system was chosen");
                 } catch (Exception ex) { //Tinkoff
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/tui-checkbox-labeled/label/tui-checkbox/tui-primitive-checkbox/div/input")).click();
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[1]/label/input")).sendKeys(conf.cardTinkoff);//test card number
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[2]/label/input")).sendKeys("1224");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[1]//tui-input-card-grouped/div/div[3]/label/input")).sendKeys("111");
-                driver.findElement(By.xpath("//tui-island/section/tui-expand/div/div/eacq-card-form/form/div[2]/button")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/label/input")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[1]/label/input")).sendKeys(conf.cardTinkoff);//test card number
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[2]/label/input")).sendKeys("1224");
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[3]/label/input")).sendKeys("111");
+                driver.findElement(By.xpath("//eacq-index-page/eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[2]/button")).click();
                 System.out.println("Info: Tinkoff payment system was chosen");
            }
         }
@@ -342,7 +342,8 @@ public class Test {
         driver.get(conf.urlContracts);
         Thread.sleep(600);
         driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[7]/button")).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tr[@data-contract="+contractId+"]/td[8]/button"))).click();
+        Thread.sleep(600);
+        driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[8]/button")).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[8]/button[2]")).click();
         Thread.sleep(600);
@@ -712,10 +713,10 @@ public class Test {
         driver.findElement(By.xpath("//*[@id='add-route-form']/div[2]/div/div/div/span[1]/div/div/div")).click(); //first company
         driver.findElement(By.name("locality_from")).sendKeys("Тверь"); //from
         driver.findElement(By.xpath("//*[@id='add-route-form']/div[5]/div[1]/div/span/div/div/div[1]")).click();
-        driver.findElement(By.xpath("//*[@id='add-route-form']/div[6]/div[1]/div[1]/div/div/span[1]/div/div/div[4]")).click(); //particular city
+        driver.findElement(By.xpath("//*[@id='add-route-form']/div[6]/div[1]/div[1]/div/div/span[1]/div/div/div[3]")).click(); //departure station
         driver.findElement(By.name("locality_to")).sendKeys("Новосокольники"); //to
         driver.findElement(By.xpath("//*[@id='add-route-form']/div[5]/div[3]/div/span/div/div/div")).click();
-        driver.findElement(By.xpath("//*[@id='add-route-form']/div[6]/div[1]/div[2]/div/div/span[1]/div/div/div[1]")).click(); //first city
+        driver.findElement(By.xpath("//*[@id='add-route-form']/div[6]/div[1]/div[2]/div/div/span[1]/div/div/div[1]")).click(); //arrival station
         driver.findElement(By.name("duration_hours")).sendKeys("1"); //hours
         driver.findElement(By.name("duration_minutes")).sendKeys("10"); //minutes
         driver.findElement(By.xpath("//*[@id='add-route-form']/div[9]/div[2]/button")).click();
@@ -784,6 +785,7 @@ public class Test {
         driver.findElement(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a")).click();
         Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Документы и разрешения')]"))).click(); //go to admit documents
+        Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bg-info:nth-child(2) .btn-success"))).click(); //admit first document
         Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bg-info:nth-child(3) .btn-success"))).click(); //admit second document
@@ -816,6 +818,7 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Перевозчики по договору')]"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a"))).click();
+        Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Включить продажи')]"))).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]")).click();
         Thread.sleep(300);
@@ -823,8 +826,7 @@ public class Test {
         driver.findElement(By.id("_tmpIdagreement")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]"))).click();
         Thread.sleep(300);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/span"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/div/a"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/a[3]"))).click();
         driver.findElement(By.cssSelector(".btn-info")).click(); //edit first route
         driver.findElement(By.xpath("//*[@id='route-edit']/div[1]/div[3]/div[1]/ul/li[5]/a")).click(); //sales
         Thread.sleep(600);
@@ -1022,6 +1024,8 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sales-requisites']/form/div[2]/div[2]/p"))).click(); //create contract
         Thread.sleep(600);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[2]/form/div[2]/div[2]/p"))).click(); //create organization
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[6]/div/div/div[2]/form/div[10]/div/div/button"))).click(); //NDS
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[6]/div/div/div[2]/form/div[10]/div/div/div/ul/li[2]/a"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.name("legal_address_index"))).sendKeys("170000");
         driver.findElement(By.name("legal_address_text")).sendKeys("улица Пушкина");
         driver.findElement(By.name("post_address_index")).sendKeys("170000");
@@ -1048,10 +1052,10 @@ public class Test {
         driver.findElement(By.linkText("Добавить маршрут")).click(); //add route
         driver.findElement(By.name("locality_from")).sendKeys("Тверь"); //from
         driver.findElement(By.xpath("//*[@id='add-route-form']/div[3]/div[1]/div/span/div/div/div[1]")).click();
-        driver.findElement(By.xpath("//*[@id='add-route-form']/div[4]/div[1]/div[1]/div/div/span[1]/div/div/div[4]")).click(); //particular city
+        driver.findElement(By.xpath("//*[@id='add-route-form']/div[4]/div[1]/div[1]/div/div/span[1]/div/div/div[3]")).click(); //departure station
         driver.findElement(By.name("locality_to")).sendKeys("Новосокольники"); //to
         driver.findElement(By.xpath("//*[@id='add-route-form']/div[3]/div[3]/div/span/div/div/div")).click();
-        driver.findElement(By.xpath("//*[@id='add-route-form']/div[4]/div[1]/div[2]/div/div/span[1]/div/div/div[1]")).click(); //first city
+        driver.findElement(By.xpath("//*[@id='add-route-form']/div[4]/div[1]/div[2]/div/div/span[1]/div/div/div[1]")).click(); //arrival station
         driver.findElement(By.id("_autoId_19_")).click();
         driver.findElement(By.xpath("//*[@id='route-add']/div[3]/div[3]/div/div[2]/div[11]")).click(); //departure time
         driver.findElement(By.xpath("//*[@id='route-add']/div[3]/div[3]/div/div[3]/div[2]")).click();
@@ -1118,6 +1122,7 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Перевозчики по договору')]"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[3]/div/ul/li[4]/a"))).click();
+        Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Включить продажи')]"))).click();
         driver.findElement(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]")).click();
         Thread.sleep(300);
@@ -1125,8 +1130,7 @@ public class Test {
         driver.findElement(By.id("_tmpIdagreement")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[4]/div/div/div[3]/button[1]"))).click();
         Thread.sleep(300);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/span"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/div/a"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/a[3]"))).click();
         driver.findElement(By.cssSelector(".btn-info")).click(); //edit first route
         driver.findElement(By.xpath("//*[@id='route-edit']/div[1]/div[3]/div[1]/ul/li[5]/a")).click(); //sales
         Thread.sleep(600);

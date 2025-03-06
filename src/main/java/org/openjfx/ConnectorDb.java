@@ -10,7 +10,7 @@ public class ConnectorDb {
     Statement statement;
     PreparedStatement insert;
 
-    public void setCon () { //connection to database with dbName
+    public void setCon() {
         try {
             Connection con = DriverManager.getConnection(conf.dbAddress,conf.dbUserName,conf.dbPassword);
             statement = con.createStatement();
