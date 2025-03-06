@@ -30,7 +30,7 @@ public class ControllerMain {
     private Button buttonTestSettingsApply, buttonTestSettingsOff, buttonTestSettingsOn;
 
     @FXML
-    private Button buttonTestsOff, buttonTestsOn;
+    private Button buttonTestsOn, buttonTestsOff;
 
     @FXML
     private Circle checkTestCreateAll, checkTestCreateCom, checkTestCreateRoute, checkTestDeleteCom, checkTestSelect;
@@ -68,8 +68,8 @@ public class ControllerMain {
         imageLogo.setLayoutY((double) size.height / 2 - 200);
 
         buttonTestsOn.setOnAction(event -> {
-            buttonTestsOff.setVisible(true);
             buttonTestsOn.setVisible(false);
+            buttonTestsOff.setVisible(true);
             buttonTestMBook.setVisible(true);
             buttonTestMBuy.setVisible(true);
             buttonTestDBook.setVisible(true);
@@ -92,6 +92,39 @@ public class ControllerMain {
             checkTestExperimental.setVisible(true);
             buttonTestSettingsOn.setVisible(true);
             imageLogo.setVisible(false);
+        });
+
+        buttonTestsOff.setOnAction(event -> {
+            buttonTestsOn.setVisible(true);
+            buttonTestsOff.setVisible(false);
+            buttonTestMBook.setVisible(false);
+            buttonTestMBuy.setVisible(false);
+            buttonTestDBook.setVisible(false);
+            buttonTestDBuy.setVisible(false);
+            buttonTestCreateCom.setVisible(false);
+            buttonTestCreateRoute.setVisible(false);
+            buttonTestSelect.setVisible(false);
+            buttonTestDeleteCom.setVisible(false);
+            buttonTestCreateAll.setVisible(false);
+            buttonTestExperimental.setVisible(false);
+            checkTestMBook.setVisible(false);
+            checkTestMBuy.setVisible(false);
+            checkTestDBook.setVisible(false);
+            checkTestDBuy.setVisible(false);
+            checkTestCreateCom.setVisible(false);
+            checkTestCreateRoute.setVisible(false);
+            checkTestSelect.setVisible(false);
+            checkTestDeleteCom.setVisible(false);
+            checkTestCreateAll.setVisible(false);
+            checkTestExperimental.setVisible(false);
+            buttonTestSettingsOn.setVisible(false);
+            imageLogo.setVisible(true);
+            buttonTestSettingsOn.setVisible(false);
+            buttonTestSettingsOff.setVisible(false);
+            buttonTestSettingsApply.setVisible(false);
+            windowTestSettings.setVisible(false);
+            fieldTestSettingsFrom.setVisible(false);
+            fieldTestSettingsTo.setVisible(false);
         });
 
         buttonDataOn.setOnAction(event -> {

@@ -10,9 +10,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="windowMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="512.0" style="-fx-background-color: #293239;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ControllerMain">
+<AnchorPane fx:id="windowMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="512.0" style="-fx-background-color: #293239;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ControllerMain">
    <children>
-      <Button fx:id="buttonTestsOn" alignment="CENTER" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Tests" textAlignment="CENTER" textFill="#f07732" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <Button fx:id="buttonTestsOn" alignment="CENTER" focusTraversable="false" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" stylesheets="@button.css" text="Tests" textAlignment="CENTER" textFill="#f07732" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="25.0" />
          </font>
@@ -20,7 +20,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestsOff" alignment="CENTER" layoutX="24.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10; -fx-border-width: 2;" text="Tests" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <Button fx:id="buttonTestsOff" alignment="CENTER" focusTraversable="false" layoutX="24.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" stylesheets="@button.css" text="Tests" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="25.0" />
          </font>
@@ -28,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonDataOn" alignment="CENTER" layoutX="497.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Data" textAlignment="CENTER" textFill="#f07732" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <Button fx:id="buttonDataOn" alignment="CENTER" focusTraversable="false" layoutX="497.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" stylesheets="@button.css" text="Data" textAlignment="CENTER" textFill="#f07732" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="25.0" />
          </font>
@@ -36,7 +36,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonDataOff" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10; -fx-border-width: 2;" text="Data" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <Button fx:id="buttonDataOff" alignment="CENTER" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" stylesheets="@button.css" text="Data" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="25.0" />
          </font>
@@ -44,7 +44,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestMBook" alignment="CENTER" layoutX="15.0" layoutY="121.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Mobile booking" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="120.0">
+      <Button fx:id="buttonTestMBook" alignment="CENTER" focusTraversable="false" layoutX="15.0" layoutY="121.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Mobile booking" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="120.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestMBuy" alignment="CENTER" layoutX="20.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Mobile buying" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="195.0">
+      <Button fx:id="buttonTestMBuy" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Mobile buying" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="195.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -60,7 +60,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestDBook" alignment="CENTER" layoutX="20.0" layoutY="256.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="382.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Desktop booking" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="270.0">
+      <Button fx:id="buttonTestDBook" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="256.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="382.0" stylesheets="@button.css" text="Desktop booking" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="270.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -68,7 +68,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestDBuy" alignment="CENTER" layoutX="20.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Desktop buying" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="345.0">
+      <Button fx:id="buttonTestDBuy" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Desktop buying" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="345.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -76,7 +76,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestCreateCom" alignment="CENTER" layoutX="20.0" layoutY="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Create company" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="420.0">
+      <Button fx:id="buttonTestCreateCom" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Create company" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="420.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -84,7 +84,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestCreateRoute" alignment="CENTER" layoutX="20.0" layoutY="466.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Create route" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="495.0">
+      <Button fx:id="buttonTestCreateRoute" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="466.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Create route" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="495.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -92,7 +92,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestSelect" alignment="CENTER" layoutX="20.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Sales activation" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="570.0">
+      <Button fx:id="buttonTestSelect" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Sales activation" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="570.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -100,7 +100,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestDeleteCom" alignment="CENTER" layoutX="20.0" layoutY="611.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Delete company" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="645.0">
+      <Button fx:id="buttonTestDeleteCom" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="611.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Delete company" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="645.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -108,7 +108,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestCreateAll" alignment="CENTER" layoutX="20.0" layoutY="678.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Creation by admin" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="720.0">
+      <Button fx:id="buttonTestCreateAll" alignment="CENTER" focusTraversable="false" layoutX="20.0" layoutY="678.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Creation by admin" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="720.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -116,7 +116,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestExperimental" alignment="CENTER" layoutX="26.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Experimental Test" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="820.0">
+      <Button fx:id="buttonTestExperimental" alignment="CENTER" focusTraversable="false" layoutX="26.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="280.0" stylesheets="@button.css" text="Experimental Test" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="820.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -124,7 +124,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonExit" alignment="CENTER" layoutX="412.0" layoutY="1002.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="Exit" textAlignment="CENTER" textFill="#f07732" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+      <Button fx:id="buttonExit" alignment="CENTER" focusTraversable="false" layoutX="412.0" layoutY="1002.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="70.0" stylesheets="@button.css" text="Exit" textAlignment="CENTER" textFill="#f07732" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -132,7 +132,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestSettingsOn" alignment="CENTER" layoutX="353.0" layoutY="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="⚙" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
+      <Button fx:id="buttonTestSettingsOn" alignment="CENTER" focusTraversable="false" layoutX="353.0" layoutY="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="@button.css" text="⚙" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -140,7 +140,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestSettingsOff" alignment="CENTER" layoutX="40.0" layoutY="1012.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10; -fx-border-width: 2;" text="⚙" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
+      <Button fx:id="buttonTestSettingsOff" alignment="CENTER" focusTraversable="false" layoutX="40.0" layoutY="1012.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="@button.css" text="⚙" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
@@ -148,7 +148,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonTestSettingsApply" alignment="CENTER" layoutX="50.0" layoutY="1022.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #293239; -fx-border-color: #f07732; -fx-border-radius: 10;" text="✓" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="110.0">
+      <Button fx:id="buttonTestSettingsApply" alignment="CENTER" focusTraversable="false" layoutX="50.0" layoutY="1022.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="@button.css" text="✓" textAlignment="CENTER" textFill="#f07732" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="110.0">
          <font>
             <Font name="Manjari Bold" size="20.0" />
          </font>
