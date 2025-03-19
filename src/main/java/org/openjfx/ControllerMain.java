@@ -1,8 +1,12 @@
 package org.openjfx;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +19,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class ControllerMain {
-
 
     @FXML
     private Button buttonDataOff, buttonDataOn, buttonExit;
@@ -52,6 +55,7 @@ public class ControllerMain {
 
     ResultToDb insertResult = new ResultToDb();
     String date = new CurrentDate().today;
+    Test test = new Test();
 
     String from = "Тверь";
     String to = "Новосокольники";
@@ -59,73 +63,12 @@ public class ControllerMain {
     @FXML
     public void initialize() {
         Stage dataStage = new Stage();
-        Test test = new Test();
         ExperimentalTest exTest = new ExperimentalTest();
 
         MonitorSize size = new MonitorSize();
         windowMain.setPrefSize((double) size.width / 5, size.height);
         imageLogo.setLayoutX((double) size.width / 10 -100);
         imageLogo.setLayoutY((double) size.height / 2 - 200);
-
-        buttonTestsOn.setOnAction(event -> {
-            buttonTestsOn.setVisible(false);
-            buttonTestsOff.setVisible(true);
-            buttonTestMBook.setVisible(true);
-            buttonTestMBuy.setVisible(true);
-            buttonTestDBook.setVisible(true);
-            buttonTestDBuy.setVisible(true);
-            buttonTestCreateCom.setVisible(true);
-            buttonTestCreateRoute.setVisible(true);
-            buttonTestSelect.setVisible(true);
-            buttonTestDeleteCom.setVisible(true);
-            buttonTestCreateAll.setVisible(true);
-            buttonTestExperimental.setVisible(true);
-            checkTestMBook.setVisible(true);
-            checkTestMBuy.setVisible(true);
-            checkTestDBook.setVisible(true);
-            checkTestDBuy.setVisible(true);
-            checkTestCreateCom.setVisible(true);
-            checkTestCreateRoute.setVisible(true);
-            checkTestSelect.setVisible(true);
-            checkTestDeleteCom.setVisible(true);
-            checkTestCreateAll.setVisible(true);
-            checkTestExperimental.setVisible(true);
-            buttonTestSettingsOn.setVisible(true);
-            imageLogo.setVisible(false);
-        });
-
-        buttonTestsOff.setOnAction(event -> {
-            buttonTestsOn.setVisible(true);
-            buttonTestsOff.setVisible(false);
-            buttonTestMBook.setVisible(false);
-            buttonTestMBuy.setVisible(false);
-            buttonTestDBook.setVisible(false);
-            buttonTestDBuy.setVisible(false);
-            buttonTestCreateCom.setVisible(false);
-            buttonTestCreateRoute.setVisible(false);
-            buttonTestSelect.setVisible(false);
-            buttonTestDeleteCom.setVisible(false);
-            buttonTestCreateAll.setVisible(false);
-            buttonTestExperimental.setVisible(false);
-            checkTestMBook.setVisible(false);
-            checkTestMBuy.setVisible(false);
-            checkTestDBook.setVisible(false);
-            checkTestDBuy.setVisible(false);
-            checkTestCreateCom.setVisible(false);
-            checkTestCreateRoute.setVisible(false);
-            checkTestSelect.setVisible(false);
-            checkTestDeleteCom.setVisible(false);
-            checkTestCreateAll.setVisible(false);
-            checkTestExperimental.setVisible(false);
-            buttonTestSettingsOn.setVisible(false);
-            imageLogo.setVisible(true);
-            buttonTestSettingsOn.setVisible(false);
-            buttonTestSettingsOff.setVisible(false);
-            buttonTestSettingsApply.setVisible(false);
-            windowTestSettings.setVisible(false);
-            fieldTestSettingsFrom.setVisible(false);
-            fieldTestSettingsTo.setVisible(false);
-        });
 
         buttonDataOn.setOnAction(event -> {
             try {
@@ -152,133 +95,27 @@ public class ControllerMain {
             }
         });
 
-        buttonTestSettingsOn.setOnAction(event -> {
-            buttonTestSettingsOff.setVisible(true);
-            buttonTestSettingsOn.setVisible(false);
-            buttonTestSettingsApply.setVisible(true);
-            windowTestSettings.setVisible(true);
-            fieldTestSettingsFrom.setVisible(true);
-            fieldTestSettingsTo.setVisible(true);
-        });
-
-        buttonTestSettingsOff.setOnAction(event -> {
-            buttonTestSettingsOn.setVisible(true);
-            buttonTestSettingsOff.setVisible(false);
-            buttonTestSettingsApply.setVisible(false);
-            windowTestSettings.setVisible(false);
-            fieldTestSettingsFrom.setVisible(false);
-            fieldTestSettingsTo.setVisible(false);
-        });
+        buttonTestsOn.setOnAction(event -> setVisibility(true, false));
+        buttonTestsOff.setOnAction(event -> setVisibility(false, false));
+        buttonTestSettingsOn.setOnAction(event -> setSettingsVisibility(true));
+        buttonTestSettingsOff.setOnAction(event -> setSettingsVisibility(false));
 
         buttonTestSettingsApply.setOnAction(event -> {
-            from=fieldTestSettingsFrom.getText();
-            to=fieldTestSettingsTo.getText();
-            buttonTestSettingsOn.setVisible(true);
-            buttonTestSettingsOff.setVisible(false);
-            buttonTestSettingsApply.setVisible(false);
-            windowTestSettings.setVisible(false);
-            fieldTestSettingsFrom.setVisible(false);
-            fieldTestSettingsTo.setVisible(false);
+            from = fieldTestSettingsFrom.getText();
+            to = fieldTestSettingsTo.getText();
+            setSettingsVisibility(false);
         });
 
-        buttonTestMBook.setOnAction(event -> {
-            String name = "Mobile booking";
-            Circle check = checkTestMBook;
-            try {
-                test.bookingMobile(from, to);
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
+        buttonTestMBook.setOnAction(event -> testStart("Mobile booking", checkTestMBook, test::bookingMobile));
+        buttonTestMBuy.setOnAction(event -> testStart("Mobile buying", checkTestMBuy, test::buyingMobile));
+        buttonTestDBook.setOnAction(event -> testStart("Desktop booking", checkTestDBook, test::bookingDesktop));
+        buttonTestDBuy.setOnAction(event -> testStart("Desktop buying", checkTestDBuy, test::buyingDesktop));
 
-        buttonTestMBuy.setOnAction(event -> {
-            String name = "Mobile buying";
-            Circle check = checkTestMBuy;
-            try {
-                test.buyingMobile(from, to);
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
-
-        buttonTestDBook.setOnAction(event -> {
-            String name = "Desktop booking";
-            Circle check = checkTestDBook;
-            try {
-                test.bookingDesktop(from, to);
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
-
-        buttonTestDBuy.setOnAction(event -> {
-            String name = "Desktop buying";
-            Circle check = checkTestDBuy;
-            try {
-                test.buyingDesktop(from, to);
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
-
-        buttonTestCreateCom.setOnAction(event -> {
-            String name = "Create company";
-            Circle check = checkTestCreateCom;
-            try {
-                test.createCompany();
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
-
-        buttonTestCreateRoute.setOnAction(event -> {
-            String name = "Create route";
-            Circle check = checkTestCreateRoute;
-            try {
-                test.createRoute();
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
-
-        buttonTestSelect.setOnAction(event -> {
-            String name = "Sales activation";
-            Circle check = checkTestSelect;
-            try {
-                test.salesActivation();
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
-
-        buttonTestDeleteCom.setOnAction(event -> {
-            String name = "Delete company";
-            Circle check = checkTestDeleteCom;
-            try {
-                test.deleteCompany();
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
-
-        buttonTestCreateAll.setOnAction(event -> {
-            String name = "Creation by admin";
-            Circle check = checkTestCreateAll;
-            try {
-                test.createAll();
-                successfulResult(check, name);
-            } catch (Exception resultException) {
-                unsuccessfulResult(check, name, resultException.toString());
-            }
-        });
+        buttonTestCreateCom.setOnAction(event -> testStart("Create company", checkTestCreateCom, test::createCompany));
+        buttonTestCreateRoute.setOnAction(event -> testStart("Create route", checkTestCreateRoute, test::createRoute));
+        buttonTestCreateRoute.setOnAction(event -> testStart("Sales activation", checkTestSelect, test::salesActivation));
+        buttonTestCreateRoute.setOnAction(event -> testStart("Delete company", checkTestDeleteCom, test::deleteCompany));
+        buttonTestCreateRoute.setOnAction(event -> testStart("Creation by admin", checkTestCreateAll, test::createAll));
 
         buttonTestExperimental.setOnAction(event -> {
             try {
@@ -292,18 +129,67 @@ public class ControllerMain {
         buttonExit.setOnAction(event -> System.exit(0));
     }
 
-    private void successfulResult(Circle check, String name) {
-        check.setFill(Paint.valueOf("#00ff00cc"));
-        String result = "successful";
-        String log = "";
-        insertResult.insertToDb(date, name, result, log);
+    private void setVisibility(boolean testsVisible, boolean settingsVisible) {
+        buttonTestsOn.setVisible(!testsVisible);
+        buttonTestsOff.setVisible(testsVisible);
+
+        List<Node> testButtons = Arrays.asList(
+                buttonTestMBook, buttonTestMBuy, buttonTestDBook, buttonTestDBuy,
+                buttonTestCreateCom, buttonTestCreateRoute, buttonTestSelect,
+                buttonTestDeleteCom, buttonTestCreateAll, buttonTestExperimental,
+                checkTestMBook, checkTestMBuy, checkTestDBook, checkTestDBuy,
+                checkTestCreateCom, checkTestCreateRoute, checkTestSelect,
+                checkTestDeleteCom, checkTestCreateAll, checkTestExperimental,
+                buttonTestSettingsOn
+        );
+
+        testButtons.forEach(button -> button.setVisible(testsVisible));
+        imageLogo.setVisible(!testsVisible);
+
+        setSettingsVisibility(settingsVisible);
     }
 
-    private void unsuccessfulResult(Circle check,String name, String resultException) {
-        System.out.println(resultException);
-        check.setFill(Paint.valueOf("#ff0000cc"));
-        String result = "unsuccessful";
-        String log = resultException.length() > 1000 ? resultException.substring(0, 1000) : resultException;
-        insertResult.insertToDb(date, name, result, log);
+    private void setSettingsVisibility(boolean visible) {
+        buttonTestSettingsOn.setVisible(!visible);
+        buttonTestSettingsOff.setVisible(visible);
+        buttonTestSettingsApply.setVisible(visible);
+        windowTestSettings.setVisible(visible);
+        fieldTestSettingsFrom.setVisible(visible);
+        fieldTestSettingsTo.setVisible(visible);
+    }
+
+    interface CheckedBiConsumer<T, U> {
+        void accept(T t, U u) throws Exception;
+    }
+
+    private void testStart(String testName, Circle checkButton, CheckedBiConsumer<String, String> test) {
+        try {
+            test.accept(from, to);
+            checkButton.setFill(Paint.valueOf("#00ff00cc"));
+            insertResult.insertToDb(date, testName, "successful", "");
+        } catch (Exception resultException) {
+            unsuccessfulResult(checkButton, testName, resultException);
+        }
+    }
+
+    interface Runnable {
+        void run() throws Exception;
+    }
+
+    private void testStart(String testName, Circle checkButton, Runnable test) {
+        try {
+            test.run(); // Вызываем метод без аргументов
+            checkButton.setFill(Paint.valueOf("#00ff00cc"));
+            insertResult.insertToDb(date, testName, "successful", "");
+        } catch (Exception resultException) {
+            unsuccessfulResult(checkButton, testName, resultException);
+        }
+    }
+
+    private void unsuccessfulResult(Circle checkButton,String testName, Exception resultException) {
+        String exception = resultException.toString();
+        System.out.println(exception);
+        checkButton.setFill(Paint.valueOf("#ff0000cc"));
+        insertResult.insertToDb(date, testName, "unsuccessful", exception.length() > 1000 ? exception.substring(0, 1000) : exception);
     }
 }
