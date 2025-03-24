@@ -113,9 +113,9 @@ public class ControllerMain {
 
         buttonTestCreateCom.setOnAction(event -> testStart("Create company", checkTestCreateCom, test::createCompany));
         buttonTestCreateRoute.setOnAction(event -> testStart("Create route", checkTestCreateRoute, test::createRoute));
-        buttonTestCreateRoute.setOnAction(event -> testStart("Sales activation", checkTestSelect, test::salesActivation));
-        buttonTestCreateRoute.setOnAction(event -> testStart("Delete company", checkTestDeleteCom, test::deleteCompany));
-        buttonTestCreateRoute.setOnAction(event -> testStart("Creation by admin", checkTestCreateAll, test::createAll));
+        buttonTestSelect.setOnAction(event -> testStart("Sales activation", checkTestSelect, test::salesActivation));
+        buttonTestDeleteCom.setOnAction(event -> testStart("Delete company", checkTestDeleteCom, test::deleteCompany));
+        buttonTestCreateAll.setOnAction(event -> testStart("Creation by admin", checkTestCreateAll, test::createAll));
 
         buttonTestExperimental.setOnAction(event -> {
             try {
