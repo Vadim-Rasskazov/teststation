@@ -1,5 +1,7 @@
 package org.openjfx;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +25,20 @@ public class Test {
     String contractId;
     Boolean elementExist;
     String mobileScript = "arguments[0].setAttribute('href', '"+conf.urlMobile+"')";
+
+    void calculateNumber() { //random number for documents
+        long leftEdge = 100000L;
+        long rightEdge = 999999L;
+        documentNumber = leftEdge + (long) (Math.random() * (rightEdge - leftEdge));
+    }
+
+    void closeBasicAuth() throws Exception {
+        Thread.sleep(300);
+        Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
+        Thread.sleep(300);
+    }
 
     void firstPassengerM() { //adult mobile version
         driver.findElement(By.xpath("//fieldset/*[@placeholder='Фамилия *']")).sendKeys("Иванов");
@@ -65,30 +81,30 @@ public class Test {
 
     void passengerSeatsM() { //seats desktop version
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(900)); //change timeout due "try"
+        try {
+            driver.findElement(By.xpath("//fieldset//div/*[@class='select placeholder']/select/option[2]")); //check possibility to take a place
+            elementExist = true;
+        } catch (Exception e) {
+            elementExist = false;
+            System.out.println("Warning: There are not places for passengers");
+        }
+        if (elementExist) {
+            driver.findElement(By.xpath("//fieldset//div/*[@class='select placeholder']/select/option[2]")).click(); //first place
+            driver.findElement(By.xpath("//fieldset[2]//div/*[@class='select placeholder']/select/option[3]")).click(); //second place
             try {
-                driver.findElement(By.xpath("//fieldset//div/*[@class='select placeholder']/select/option[2]")); //check possibility to take a place
-                elementExist = true;
-            } catch (Exception e) {
-                elementExist = false;
-                System.out.println("Warning: There are not places for passengers");
+                driver.findElement(By.xpath("//*[@id='booking']/div/div/fieldset[3]/label/span")).click(); //without place
+            } catch (Exception e) { //если тарифа без места нет
+                driver.findElement(By.xpath("//fieldset[3]//div/*[@class='select placeholder']/select/option[4]")).click(); //third place
+                System.out.println("Warning: Ticket without place can`t be chosen");
             }
-            if (elementExist) {
-                driver.findElement(By.xpath("//fieldset//div/*[@class='select placeholder']/select/option[2]")).click(); //first place
-                driver.findElement(By.xpath("//fieldset[2]//div/*[@class='select placeholder']/select/option[3]")).click(); //second place
-                try {
-                    driver.findElement(By.xpath("//*[@id='booking']/div/div/fieldset[3]/label/span")).click(); //without place
-                } catch (Exception e) { //если тарифа без места нет
-                    driver.findElement(By.xpath("//fieldset[3]//div/*[@class='select placeholder']/select/option[4]")).click(); //third place
-                    System.out.println("Warning: Ticket without place can`t be chosen");
-                }
-            } 
-            if (!elementExist) { //there are no seats, but there is a tariff
-                try {
-                    driver.findElement(By.xpath("//*[@id='booking']/div/div/fieldset[3]/label/span")).click(); //tariff without place
-                } catch (Exception ex) {
-                    System.out.println("Warning: Free ticket can`t be chosen");
-                }
+        }
+        if (!elementExist) { //there are no seats, but there is a tariff
+            try {
+                driver.findElement(By.xpath("//*[@id='booking']/div/div/fieldset[3]/label/span")).click(); //tariff without place
+            } catch (Exception ex) {
+                System.out.println("Warning: Free ticket can`t be chosen");
             }
+        }
     }
 
     void passengerTariffsM() { //tariffs desktop version
@@ -204,7 +220,7 @@ public class Test {
                 driver.findElement(By.cssSelector(".seat-box.seat-widget__seat.seat-box_free.pointer")).click(); //third place
                 System.out.println("Warning: Ticket without place can`t be chosen");
             }
-        } 
+        }
         if (!elementExist) { //there are no seats, but there is a tariff
             try {
                 driver.findElement(By.xpath("//*[@id='content']/div[2]/div/div[3]/div[2]/fieldset[3]/div[2]/div[3]/div/div/div/label/span[1]/span")).click(); //tariff without place
@@ -272,14 +288,14 @@ public class Test {
         String url = driver.getCurrentUrl();
         if (url.contains("checkout.sandbox.gateline.net")) { //GateLine
             driver.findElement(By.name("order_cc_number")).sendKeys(conf.cardGateline); //test card number
-            driver.findElement(By.name("order_cc_expire")).sendKeys("1224");
-            driver.findElement(By.name("order_cc_cvv")).sendKeys("111");
-            driver.findElement(By.name("order_client_cardholder")).sendKeys("Ivanov Ivan");
+            driver.findElement(By.name("order_cc_expire")).sendKeys("0232");
+            driver.findElement(By.name("order_cc_cvv")).sendKeys("123");
+            driver.findElement(By.name("order_client_cardholder")).sendKeys("SUCCESSPAYMENT");
             driver.findElement(By.cssSelector("button.std-btn")).click();
             System.out.println("Info: Gateline payment system was chosen");
         } if (url.contains("sbergate.com")) { //SberPay
             driver.findElement(By.name("pan")).sendKeys(conf.cardSberpay); //test card number
-            driver.findElement(By.name("expiry")).sendKeys("1224");
+            driver.findElement(By.name("expiry")).sendKeys("1234");
             driver.findElement(By.name("cvc")).sendKeys("123");
             driver.findElement(By.cssSelector(".styles_solid__1fLFs")).click();
             driver.findElement(By.name("password")).sendKeys("12345678");
@@ -288,14 +304,14 @@ public class Test {
             driver.findElement(By.xpath("//button[contains(text(),'Оплатить картой')]")).click();
             driver.findElement(By.xpath("//div[2][contains(text(),'Получить чек на e-mail')]")).click();
             driver.findElement(By.name("pan")).sendKeys(conf.cardRbs); //test card number
-            driver.findElement(By.name("expiry")).sendKeys("1224");
+            driver.findElement(By.name("expiry")).sendKeys("1234");
             driver.findElement(By.name("cvc")).sendKeys("123");
             driver.findElement(By.xpath("//button[contains(text(),'Оплатить картой')]")).click();
             driver.findElement(By.name("password")).sendKeys("12345678");
             System.out.println("Info: Mts payment system was chosen");
         } if (url.contains("gpb.rbsuat.com")) { //Gazprombank
             driver.findElement(By.name("cardnumber")).sendKeys(conf.cardRbs); //test card number
-            driver.findElement(By.name("expdate")).sendKeys("1224");
+            driver.findElement(By.name("expdate")).sendKeys("1234");
             driver.findElement(By.name("cvc")).sendKeys("123");
             driver.findElement(By.xpath("//span[contains(text(),'Оплатить')]")).click();
             driver.findElement(By.name("password")).sendKeys("12345678");
@@ -307,30 +323,24 @@ public class Test {
         } if (url.contains("securepayments.tinkoff.ru")) {
             Thread.sleep(1500);
             try { //SPB Tinkoff
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[3]/label/input")).click();
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/label/input")).click();
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[2]/label/input")).sendKeys("1224");
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[3]/label/input")).sendKeys("111");
-                driver.findElement(By.xpath("//eacq-index-page/eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[4]/button")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[3]/label/input")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/section/mapi-card-email-on-demand/div/div/label/input")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[1]/label/input")).sendKeys(conf.cardTinkoff); //test card number
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[2]/label/input")).sendKeys("1224");
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[3]/label/input")).sendKeys("111");
+                driver.findElement(By.xpath("//pf-index-page/eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[4]/button")).click();
                 System.out.println("Info: SPB Tinkoff payment system was chosen");
-                } catch (Exception ex) { //Tinkoff
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/section/eacq-email-on-demand/div/div/label/input")).click();
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[1]/label/input")).sendKeys(conf.cardTinkoff);//test card number
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[2]/label/input")).sendKeys("1224");
-                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[3]/label/input")).sendKeys("111");
-                driver.findElement(By.xpath("//eacq-index-page/eacq-main-form-section/div/section/tui-expand/div/div/eacq-card-form/form/div[2]/button")).click();
+            } catch (Exception ex) { //Tinkoff
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/section/mapi-card-email-on-demand/div/div/label/input")).click();
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[1]/label/input")).sendKeys(conf.cardTinkoff);//test card number
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[2]/label/input")).sendKeys("1224");
+                driver.findElement(By.xpath("//eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[1]/eacq-card-input/tui-input-card-group/div[3]/label/input")).sendKeys("111");
+                driver.findElement(By.xpath("//pf-index-page/eacq-main-form-section/div/section/tui-expand/div/div/mapi-card-form/form/div[2]/button")).click();
                 System.out.println("Info: Tinkoff payment system was chosen");
-           }
+            }
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(25000));
         wait.until(ExpectedConditions.urlContains("avtovokzaly"));
-    }
-
-    void calculateNumber() { //random number for documents
-        long leftEdge = 100000L;
-        long rightEdge = 999999L;
-        documentNumber = leftEdge + (long) (Math.random() * (rightEdge - leftEdge));
     }
 
     void activateContract () throws Exception {
@@ -350,6 +360,12 @@ public class Test {
         driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[9]/button")).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//tr[@data-contract="+contractId+"]/td[10]/a")).click();
+    }
+
+    void cookieButton () {
+        try {
+            driver.findElement(By.xpath("//*[@id='js-cookie-message']/div/div[2]/button")).click();
+        } catch (Exception ex) {}
     }
 
     void testStart() { //start of each test
@@ -375,6 +391,7 @@ public class Test {
         WebElement href = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#copyright > div.text-right > a"))); //take a link
         JavascriptExecutor js = driver;
         js.executeScript(mobileScript, href); //put own link
+        cookieButton();
         driver.findElement(By.cssSelector(".alternativeVersion > span")).click(); //switch to mobile version
         driver.findElement(By.id("from")).sendKeys(from);
         Thread.sleep(600);
@@ -409,6 +426,7 @@ public class Test {
         WebElement href = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#copyright > div.text-right > a")));
         JavascriptExecutor js = driver;
         js.executeScript(mobileScript, href);
+        cookieButton();
         driver.findElement(By.cssSelector(".alternativeVersion > span")).click();
         driver.findElement(By.id("navCustomerArea")).click(); //authorization
         wait.until(ExpectedConditions.elementToBeClickable(By.name("userName"))).sendKeys(conf.userLogin);
@@ -478,6 +496,7 @@ public class Test {
     void bookingDesktop(String from, String to) throws Exception {
         testStart();
         driver.get(conf.urlDesktop);
+        cookieButton();
         Thread.sleep(600);
         driver.findElement(By.name("from")).sendKeys(from);
         Thread.sleep(900);
@@ -499,7 +518,7 @@ public class Test {
         driver.findElement(By.name("email")).sendKeys(conf.mail);
         insuranceD ();
         driver.findElement(By.cssSelector(".gi.gi-square-edit")).click(); //rebooking
-        driver.findElement(By.xpath("//*[@id='cart-order']/div[5]/div/div[3]")).click(); //admit
+        driver.findElement(By.xpath("//*[@id='cart-order']/div[6]/div/div[3]")).click(); //admit
         driver.findElement(By.xpath("//*[@id='headerContent']/div[2]")).click();
         testEnd();
     }
@@ -507,6 +526,7 @@ public class Test {
     void buyingDesktop(String from, String to) throws Exception {
         testStart();
         driver.get(conf.urlDesktop);
+        cookieButton();
         driver.findElement(By.xpath("//*[@id='login']/span[2]")).click(); //authorization
         driver.findElement(By.name("userName")).sendKeys(conf.userLogin);
         driver.findElement(By.name("password")).sendKeys(conf.userPassword);
@@ -550,13 +570,13 @@ public class Test {
         Thread.sleep(6000);
         driver.get(conf.urlDesktop+"passenger/list");
         driver.findElement(By.xpath("//*[@id='content']/table/tbody[3]/tr[1]/td[4]/a/span[2]")).click(); //delete the first passenger
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='passenger-list']/div[5]/div/div[3]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='passenger-list']/div[6]/div/div[3]"))).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//*[@id='content']/table/tbody[3]/tr[1]/td[4]/a/span[2]")).click(); //delete the second passenger
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='passenger-list']/div[5]/div/div[3]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='passenger-list']/div[6]/div/div[3]"))).click();
         Thread.sleep(600);
         driver.findElement(By.xpath("//*[@id='content']/table/tbody[3]/tr[1]/td[4]/a/span[2]")).click(); //delete the third passenger
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='passenger-list']/div[5]/div/div[3]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='passenger-list']/div[6]/div/div[3]"))).click();
         Thread.sleep(600);
         driver.get(orderUrl);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вернуть заказ')]"))).click();
@@ -813,7 +833,8 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='info']/form/div[14]/div/div/button"))).click(); //contract`s status
         driver.findElement(By.xpath("//*[@id='info']/form/div[14]/div/div/div/ul/li[3]")).click(); //contract`s status
         driver.findElement(By.id("_autoId_30_")).sendKeys("11111"); //1s
-        driver.findElement(By.id("_autoId_31_")).click();
+        driver.findElement(By.id("_autoId_31_")).sendKeys("22222"); //1s_offer
+        driver.findElement(By.id("_autoId_32_")).click();
         activateContract();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Перевозчики по договору')]"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a"))).click();
@@ -829,15 +850,17 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/a[3]"))).click();
         driver.findElement(By.cssSelector(".btn-info")).click(); //edit first route
         driver.findElement(By.xpath("//*[@id='route-edit']/div[1]/div[3]/div[1]/ul/li[5]/a")).click(); //sales
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/div[1]/button")).click(); //on sales
+        Thread.sleep(300);
+        driver.findElement(By.xpath("//*[@id='common']/div[1]/button")).click(); //on sales
         driver.findElement(By.cssSelector(".btn-warning:nth-child(1)")).click();
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/div[3]/button")).click(); //on sales
+        closeBasicAuth();
+        driver.findElement(By.xpath("//*[@id='common']/div[3]/button")).click(); //on sales
         driver.findElement(By.cssSelector(".text-justify")).click();
         driver.findElement(By.cssSelector(".btn-warning:nth-child(1)")).click();
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/form/div/div[2]/div[3]/div/div/div/label[2]")).click(); //set free seats
+        closeBasicAuth();
+        driver.findElement(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a")).click();
+        Thread.sleep(300);
+        driver.findElement(By.xpath("//*[@id='sales-sales']/form/div[3]/div/div/div/label[2]")).click(); //set free seats
         driver.findElement(By.name("seat_diapason")).sendKeys("1-20");
         driver.findElement(By.cssSelector(".validate > #_autoId_10_")).click();
         testEnd();
@@ -1117,7 +1140,8 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='info']/form/div[14]/div/div/button"))).click(); //contract`s status
         driver.findElement(By.xpath("//*[@id='info']/form/div[14]/div/div/div/ul/li[3]")).click(); //contract`s status
         driver.findElement(By.id("_autoId_30_")).sendKeys("11111"); //1s
-        driver.findElement(By.id("_autoId_31_")).click();
+        driver.findElement(By.id("_autoId_31_")).sendKeys("22222"); //1s_offer
+        driver.findElement(By.id("_autoId_32_")).click();
         activateContract();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Перевозчики по договору')]"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-list']/div[1]/div[3]/table/tbody/tr/td[8]/a"))).click();
@@ -1133,15 +1157,17 @@ public class Test {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='company-edit']/div[1]/div[1]/nav[2]/div/a[3]"))).click();
         driver.findElement(By.cssSelector(".btn-info")).click(); //edit first route
         driver.findElement(By.xpath("//*[@id='route-edit']/div[1]/div[3]/div[1]/ul/li[5]/a")).click(); //sales
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/div[1]/button")).click(); //on sales
+        Thread.sleep(300);
+        driver.findElement(By.xpath("//*[@id='common']/div[1]/button")).click(); //on sales
         driver.findElement(By.cssSelector(".btn-warning:nth-child(1)")).click();
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/div[3]/button")).click(); //on sales
+        closeBasicAuth();
+        driver.findElement(By.xpath("//*[@id='common']/div[3]/button")).click(); //on sales
         driver.findElement(By.cssSelector(".text-justify")).click();
         driver.findElement(By.cssSelector(".btn-warning:nth-child(1)")).click();
-        Thread.sleep(600);
-        driver.findElement(By.xpath("//*[@id='sales']/form/div/div[2]/div[3]/div/div/div/label[2]")).click(); //set free seats
+        closeBasicAuth();
+        driver.findElement(By.xpath("//*[@id='sales']/div/div[1]/ul/li[2]/a")).click();
+        Thread.sleep(300);
+        driver.findElement(By.xpath("//*[@id='sales-sales']/form/div[3]/div/div/div/label[2]")).click(); //set free seats
         driver.findElement(By.name("seat_diapason")).sendKeys("1-20");
         driver.findElement(By.cssSelector(".validate > #_autoId_10_")).click();
         testEnd();

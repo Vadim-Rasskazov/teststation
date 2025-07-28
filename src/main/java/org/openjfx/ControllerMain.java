@@ -95,8 +95,8 @@ public class ControllerMain {
             }
         });
 
-        buttonTestsOn.setOnAction(event -> setVisibility(true, false));
-        buttonTestsOff.setOnAction(event -> setVisibility(false, false));
+        buttonTestsOn.setOnAction(event -> setVisibility(true));
+        buttonTestsOff.setOnAction(event -> setVisibility(false));
         buttonTestSettingsOn.setOnAction(event -> setSettingsVisibility(true));
         buttonTestSettingsOff.setOnAction(event -> setSettingsVisibility(false));
 
@@ -129,7 +129,7 @@ public class ControllerMain {
         buttonExit.setOnAction(event -> System.exit(0));
     }
 
-    private void setVisibility(boolean testsVisible, boolean settingsVisible) {
+    private void setVisibility(boolean testsVisible) {
         buttonTestsOn.setVisible(!testsVisible);
         buttonTestsOff.setVisible(testsVisible);
 
@@ -146,7 +146,7 @@ public class ControllerMain {
         testButtons.forEach(button -> button.setVisible(testsVisible));
         imageLogo.setVisible(!testsVisible);
 
-        setSettingsVisibility(settingsVisible);
+        setSettingsVisibility(false);
     }
 
     private void setSettingsVisibility(boolean visible) {
